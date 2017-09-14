@@ -1,0 +1,37 @@
+page-home {
+ion-title{
+    align-content: center;
+    text-align: center;
+    }
+#register{
+    font-weight: bold;
+    margin-top: 20px;
+    color: #488aff;
+}
+ion-input{
+    color: #488aff;
+}
+#login{
+    color: whitesmoke;
+    margin-top: 10px;
+    margin-left: 15px;
+    background-color: #076307;
+}
+
+#googleLogin{
+    margin-left:50px;
+    border-color: whitesmoke; 
+    align-content: center;
+    text-align: center;
+    margin-top: 50px;
+    color: #f53d3d;
+}
+#fbLogin{
+    margin-left:50px; 
+    align-content: center;
+    border-color: whitesmoke; 
+    text-align: center;
+    margin-top: 20px;
+    color: #488aff;
+}
+}

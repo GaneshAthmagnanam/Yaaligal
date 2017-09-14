@@ -1,0 +1,30 @@
+<!--
+  Generated template for the FarmerDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="farmGreen">
+    <ion-title>
+      <ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>
+        Farmer Details
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-list *ngFor="let detail of Fdetails; let i = index">
+  <ion-item (click)="farmerDetails(i)">
+    <ion-avatar item-start>
+      <img src="assets/farmer.jpg">
+    </ion-avatar>
+    <h2>{{detail.name}}</h2>
+    <h3>Pending Months: {{detail.pendingmonths}}</h3>
+    <p>Loan Amount Pending: {{detail.loanamount}}</p>
+  </ion-item>
+  </ion-list>
+</ion-content>
