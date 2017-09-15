@@ -15,24 +15,27 @@
 
 <ion-content padding>
   <ion-item>
-   <ion-label floating>User Name</ion-label>
+   <ion-label floating>User Name*</ion-label>
    <ion-input type="text" [(ngModel)]="name"></ion-input>
   </ion-item>
   <ion-item>
-   <ion-label floating>Email Address</ion-label>
+   <ion-label floating>Email Address*</ion-label>
    <ion-input type="email" [(ngModel)]="email"></ion-input>
   </ion-item>
   <ion-item>
-   <ion-label floating>Password</ion-label>
+   <ion-label floating>Password*</ion-label>
    <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
   <ion-item>
-   <ion-label floating>Confirm Password</ion-label>
+   <ion-label floating>Verify Password*</ion-label>
    <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
   </ion-item>
   <div id="register">
-  <button id="registerForm" ion-button icon-left (click)="registerMe()" half color="farmGreen">
+  <button id="registerForm" ion-button icon-left type="submit" (click)="registerMe()" block color="farmGreen">
      Add Me
   </button>
   </div>
+  <div id="errorMsg">{{errorMsg}}</div>
+  <div id="errorMsg">{{nameErrorMsg}}</div>
+  <div id="errorMsg">{{passwordMismatchMessage}}</div>
 </ion-content>

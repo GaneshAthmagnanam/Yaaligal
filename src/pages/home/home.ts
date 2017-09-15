@@ -13,21 +13,34 @@ import firebase from 'firebase';
 export class HomePage {
   email:any;
   password:any;
-  errorMsg:String;
+  errorMsg:String='';
+  errorMsg1:String='';
+  errorMsg2:String='';
   loginMethod:number;
   constructor(private fb: Facebook,public navCtrl: NavController, public googleplus:GooglePlus,private fireauth:AngularFireAuth) {
 
   }
   async login(){
+    this.errorMsg="";
+    this.errorMsg1="";
+    this.errorMsg2="";
     try{
-      const result =await this.fireauth.auth.signInWithEmailAndPassword(this.email,this.password);
-      this.loginMethod=1;
-      this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+        
+        const result =await this.fireauth.auth.signInWithEmailAndPassword(this.email,this.password).then(succ=>{
+        this.loginMethod=1;
+        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+      }).catch(error=>{
+        this.errorMsg="";
+        this.errorMsg=error['message'];
+        console.log(error);
+      })
+      
       }
     catch(error){
+      this.errorMsg="";
+      //console.log(error['message']);
+      this.errorMsg=error['message'];
       console.log(error);
-      this.errorMsg="Invalid Login details";
-      console.log(this.errorMsg);
     }
     
     
@@ -37,6 +50,9 @@ export class HomePage {
   }
   
   loginGoogle(){
+    this.errorMsg="";
+    this.errorMsg1="";
+    this.errorMsg2="";
     this.googleplus.login({
       'webClientId':'776150611911-a3e9jut5rl0u09mk8hsmuqsbeodkmd0u.apps.googleusercontent.com',
       'offline':true
@@ -46,22 +62,43 @@ export class HomePage {
         this.loginMethod=2;
         this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
       }).catch(ns=>{
+        this.errorMsg1="";
+        this.errorMsg1=ns['message'];
         console.log("Login Failed");
         })
       },error=>{
+        this.errorMsg1="";
+        this.errorMsg1=error['message'];
         console.log("Login Failed in promise");
       })
   }
   loginFB(){
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) =>{ 
-        this.loginMethod=3;
-        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
-      })
-      .catch(e => {
-        console.log('Error logging into Facebook', e)
-      });
+    this.errorMsg="";
+    this.errorMsg1="";
+    this.errorMsg2="";
+    try{
+      
+      this.fb.login(['public_profile', 'user_friends', 'email'])
+        .then((res: FacebookLoginResponse) =>{ 
+          this.loginMethod=3;
+          this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+        })
+        .catch(e => {
+          this.errorMsg2="";
+          this.errorMsg2=e['message'];
+          console.log('Error logging into Facebook', e)
+        });
+      }
+    catch(error){
+      this.errorMsg2="";
+        this.errorMsg2=error['message'];
+        console.log('Error logging into Facebook', error)
+      }
   }
+  resetPwd(){
+      this.navCtrl.push('ResetpasswordPage');
+  }
+  
  logout(value){
     if(value==3){
     this.fb.logout().then((response) => {

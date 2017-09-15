@@ -16,9 +16,11 @@ import {HomePage} from '../home/home';
 })
 export class RegisterPage {
   email:any;
+  nameErrorMsg:String;
   password:any;
   cpassword:any;
-  name:any;
+  name:any="";
+  errorMsg:any;
   passwordMismatchMessage:String;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fireauth:AngularFireAuth) {
     console.log("username is "+this.name)
@@ -28,19 +30,38 @@ export class RegisterPage {
     
   }
   async registerMe(){
-   if(this.password==this.cpassword){
-      try{
-          const result=await this.fireauth.auth.createUserWithEmailAndPassword(this.email,this.password);
-          this.navCtrl.goToRoot(HomePage);
-      }
-      catch(error){
-          console.log("result is "+error);
-      }
-   }
-  else{
-      this.passwordMismatchMessage="Password and Confirm Password are not same";
+   if(/^[a-zA-Z][a-zA-Z ]+$/.test(this.name) && this.name!=""){ 
+    if(this.password==this.cpassword){
+        try{
+            await this.fireauth.auth.createUserWithEmailAndPassword(this.email,this.password).then(succ=>{
+            this.navCtrl.goToRoot(HomePage);
+            }).catch(error=>{
+            this.passwordMismatchMessage="";
+            this.nameErrorMsg="";
+            this.errorMsg=error['message'];
+            console.log(error);
+          })
+          
+        }
+        catch(error){
+          this.passwordMismatchMessage="";
+          this.nameErrorMsg="";
+          this.errorMsg=error['message'];
+          console.log(error);
+        }
+    }
+    else{
+      this.errorMsg="";
+      this.nameErrorMsg="";
+      this.passwordMismatchMessage="Password and Verify Password are not same";
       console.log("error is"+this.passwordMismatchMessage)
     }
+   }
+   else{
+      this.errorMsg="";
+      this.passwordMismatchMessage="";
+      this.nameErrorMsg="Please enter a valid Username";
+   }
   }
 
 }
