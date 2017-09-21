@@ -30,6 +30,21 @@
    <ion-label floating>Verify Password*</ion-label>
    <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
   </ion-item>
+  <table>
+    <tr>
+      <td>
+        <div  id="pic">Upload your photo</div>
+      </td>
+      <td>
+        <button id="camera"  (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{imgSuccessMsg}}
+      </td>
+    </tr>
+  </table>
   <div id="register">
   <button id="registerForm" ion-button icon-left type="submit" (click)="registerMe()" block color="farmGreen">
      Add Me

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import {HomePage} from '../home/home';
 /**
  * Generated class for the RegisterPage page.
@@ -19,22 +21,48 @@ export class RegisterPage {
   nameErrorMsg:String;
   password:any;
   cpassword:any;
+  imgSuccessMsg:String="";
   name:any="";
   errorMsg:any;
+  public base64Image: any;
   passwordMismatchMessage:String;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fireauth:AngularFireAuth) {
+  
+  constructor(public camera: Camera,public db:AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams, private fireauth:AngularFireAuth) {
+    
     console.log("username is "+this.name)
   }
 
-  ionViewDidLoad() {
-    
+  takePicture(){
+    const options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+ // imageData is either a base64 encoded string or a file URI
+ // If it's base64:
+    this.base64Image = 'data:image/jpeg;base64,' + imageData;
+    this.imgSuccessMsg="Image Uploaded Successfully";
+      }, (err) => {
+ // Handle error
+    this.base64Image ='/assets/noImage.png';
+    this.imgSuccessMsg="Failed to upload";
+     // alert(err);
+    });
   }
   async registerMe(){
    if(/^[a-zA-Z][a-zA-Z ]+$/.test(this.name) && this.name!=""){ 
     if(this.password==this.cpassword){
         try{
             await this.fireauth.auth.createUserWithEmailAndPassword(this.email,this.password).then(succ=>{
-            this.navCtrl.goToRoot(HomePage);
+            
+            this.db.list('/userDetails').push({
+            username:this.name,
+            email:this.email,
+            image:this.base64Image
+            })  
+            this.navCtrl.setRoot(HomePage);
             }).catch(error=>{
             this.passwordMismatchMessage="";
             this.nameErrorMsg="";

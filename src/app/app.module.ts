@@ -9,6 +9,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 
@@ -45,7 +46,8 @@ firebase.initializeApp(config);
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus,
-    Facebook
+    Facebook,
+    Camera
   ]
 })
 export class AppModule {}

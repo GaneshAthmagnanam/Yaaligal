@@ -1,0 +1,52 @@
+page-my-pop-over {
+ 
+ion-content{
+    margin-top: -20px;
+
+}
+#image{
+    border-radius:50%;
+    overflow:hidden; 
+    margin-left: -15px;
+    margin-top: -15px;
+    float: left;
+    width:100px;
+    height:70px;
+}
+#close{
+    margin-left: -15px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #488aff;
+    float:right;
+    margin-top: -10px;
+}
+#profile{
+    background-color: whitesmoke;
+    color: black;
+    margin-left: 0px;
+    //color: #488aff;
+
+}
+th{
+    color: #488aff;
+}
+#email{
+    margin-left: 10px;
+    color: black;
+    float:left;
+
+    font-size: 12px;
+}
+#name{
+    margin-left: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+#signout{
+    background-color: whitesmoke;
+    color: black;
+    margin-left: 0px;
+}
+}

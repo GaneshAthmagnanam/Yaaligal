@@ -8,24 +8,44 @@
 
   <ion-navbar color="farmGreen">
     <ion-title>
-      <ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>
+      <img id="image" src={{loggedUserImage}} (click)="presentProfileModal($event)" />
+      <!--<ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>-->
       
-        Farmer Details
+      <div id="title">  Farmer Details</div>
+      
     </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  padding>
+  
+ <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
+
 <ion-list *ngFor="let detail of Fdetails; let i = index">
-  <ion-item (click)="farmerDetails(i)">
-    <ion-avatar item-start>
-      <img src="assets/farmer.jpg">
-    </ion-avatar>
-    <h2>{{detail.name}}</h2>
-    <h3>Pending Months: {{detail.pendingmonths}}</h3>
-    <p>Loan Amount Pending: {{detail.loanamount}}</p>
-  </ion-item>
+ <table>
+   <tr>
+      <td width="60%">
+        <ion-item (click)="farmerDetails(i)">
+            <ion-avatar item-start>
+                  <img src="assets/farmer.jpg">
+            </ion-avatar>
+            <div id="name">{{detail.name}}</div>
+    
+            <div>Pending Months: {{detail.pendingmonths}}</div>
+     
+            <div>Pending Loan: {{detail.loanamount}}</div>
+   
+        </ion-item>
+      </td>
+      <td id="td">
+        <button id="contributors" ion-button icon-left block type="submit" (click)="showContributors(i)">
+        {{detail.contributedcount}}  
+        </button>
+      </td>
+   </tr>
+ </table>
   </ion-list>
+    
 </ion-content>

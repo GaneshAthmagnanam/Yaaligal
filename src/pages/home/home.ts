@@ -28,7 +28,8 @@ export class HomePage {
         
         const result =await this.fireauth.auth.signInWithEmailAndPassword(this.email,this.password).then(succ=>{
         this.loginMethod=1;
-        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+        console.log(this.fireauth.auth.currentUser.displayName);
+        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.email});
       }).catch(error=>{
         this.errorMsg="";
         this.errorMsg=error['message'];
