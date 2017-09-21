@@ -36,7 +36,7 @@ authMethod:number;
     this.viewCtrl.dismiss();
   }
   profile(){
-    this.navCtrl.push('ProfilePage',{name:this.name,image:this.image,email:this.email,method:this.authMethod});
+    this.navCtrl.setRoot('ProfilePage',{name:this.name,image:this.image,email:this.email,method:this.authMethod});
   }
   logout(){
     console.log("logout");
