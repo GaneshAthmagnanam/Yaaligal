@@ -17,11 +17,37 @@
 
 <div id="divId">
   <img id="imgId" src={{image}}/>
+  <button id="camera"  (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
 </div>
-<div id="divName">
-{{name}}
+
+<table *ngIf="editName==false">
+  <tr>
+    <td id="divNameTd">
+      <div id="divName">
+          {{name}}
+      </div>
+    </td>
+    <td>
+      <div id="editName" (click)="actionToEditName()">Edit</div>
+    </td>
+  </tr>
+</table>
+<div *ngIf="editName==true">
+    
+    <ion-input type="text" placeholder="new name" [(ngModel)]="newName"></ion-input>
 </div>
+<table *ngIf="editName==true">
+  <tr>
+    <td id="saveTd">
+      <div id="save" (click)="actionToSaveName()">Save Changes</div>
+    </td>
+    <td id="revertTd">
+      <div id="revert" (click)="actionToRevertName()">Revert</div>
+    </td>
+  </tr>
+</table>
 <div id="divEmail">
 {{emailId}}
 </div>
+
 </ion-content>

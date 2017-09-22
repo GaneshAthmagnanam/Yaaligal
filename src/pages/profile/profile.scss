@@ -4,9 +4,72 @@ page-profile {
     text-align: center;
     //width: 60%;
     height:40%;
+    //position: fixed;
 }
 #imgId{
-    width: 1000%;
+    width: 80%;
     height:100%;
+    //position: fixed;
 }
+#divName{
+    text-align: center;
+    font-size: 18px;
+    align-content: center;
+    font-weight: bold;
+}
+ion-input{
+    align-content: center;
+    text-align: center;
+}
+#camera{
+    font-size: 20px;
+    margin-top: 50%;
+    margin-right: 5px;
+    float: right;
+}
+#divEmail{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight:400;
+}
+#save{
+    color: blue;
+    font-style: italic;
+    margin-left:auto; 
+    margin-right:auto;
+    text-decoration: underline;
+}
+#saveTd{
+    margin-left:auto; 
+    margin-right:auto;
+    width: 60%;
+    align-content: center;
+}
+#revertTd{
+    margin-left:auto; 
+    margin-right:auto;
+}
+#revert{
+    color: blue;
+    font-style: italic;
+    margin-left:auto; 
+    margin-right:auto;
+    text-decoration: underline;
+}
+#editName{
+    color: blue;
+    font-style: italic;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+#divNameTd{
+    margin-left:auto; 
+    margin-right:auto;
+}
+table{
+    margin-left:auto; 
+    margin-right:auto;
+}
+
 }
