@@ -35,7 +35,7 @@ export class ContributorsPage {
             })  
      console.log(this.transactionDetails);       
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContributorsPage');
   }

@@ -4,9 +4,34 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="farmGreen">
+      <ion-title><img width="50px" height="50px" src="http://cdn.marketplaceimages.windowsphone.com/v8/images/ca519066-ecf8-4eda-aaf9-2425603245da?imageType=ws_icon_large" alt="gnews | windows phone apps games store (united states)"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button  id="list" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
+
 <ion-header>
 
   <ion-navbar color="farmGreen">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+   
     <ion-title>
       <img id="image" src={{loggedUserImage}} (click)="presentProfileModal($event)" />
       <!--<ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>-->
@@ -49,3 +74,4 @@
   </ion-list>
     
 </ion-content>
+<!--<ion-nav [root]="rootPage"></ion-nav>-->

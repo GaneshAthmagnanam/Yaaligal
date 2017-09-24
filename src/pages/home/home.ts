@@ -68,6 +68,7 @@ export class HomePage {
         var email=firebase.auth().currentUser.email;
         var image=firebase.auth().currentUser.photoURL;
         this.googleUserData={email:email,image:image,uName:uname};
+        //this.navCtrl.
         this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,data:this.googleUserData});
       }).catch(ns=>{
         this.errorMsg1="";

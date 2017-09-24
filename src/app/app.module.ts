@@ -12,7 +12,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
-
+import {ShareService} from '../pages/holder'
 
  var config = {
     apiKey: "AIzaSyDcxLnjSsyd4uzKr64zrG3opZ6suFbYHhY",
@@ -47,7 +47,8 @@ firebase.initializeApp(config);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GooglePlus,
     Facebook,
-    Camera
+    Camera,
+    ShareService
   ]
 })
 export class AppModule {}

@@ -21,7 +21,7 @@ import firebase from 'firebase';
 export class DetailsPage {
   index:any;
   errorMsg:any;
-  usertransactionId:number;
+  usertransactionId:number=1111111111111;
   loginMethod:number;
   dataValue:any=[];
   age:any;
@@ -46,6 +46,7 @@ export class DetailsPage {
   loggedinEmail:any;
   pendingmonths:any;
   constructor(public googleplus:GooglePlus,private fb: Facebook,private fireauth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,public db: AngularFireDatabase) {
+    //this.fetchTransactionId();
     this.dateAlone = new Date().getDate();
     this.monthAlone=new Date().getMonth();
     this.yearAlone=new Date().getFullYear();
@@ -63,11 +64,12 @@ export class DetailsPage {
     this.loggedinImage=this.navParams.get('image');
     this.loggedinEmail=this.navParams.get('email');
     this.loggedinName=this.navParams.get('name');
-    
+    //alert("in details page"+this.loginMethod+"**"+this.index+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName);
     console.log("in details page"+this.loginMethod+"**"+this.index+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName)
-    this.fetchTransactionId();
+    
     this.show(this.index);
   }
+  
   show(value){
     this.db.list('/Farmerdetails').subscribe(data=>{
     this.dataValue=data[value];
@@ -118,6 +120,7 @@ export class DetailsPage {
             //console.log("1"+data);
             
             this.usertransactionId=data[data.length-1].transactionId+1;
+            //alert(this.usertransactionId);
             //console.log("2"+"*****"+data[data.length-1].transactionId);
     })
   }

@@ -1,5 +1,12 @@
 // http://ionicframework.com/docs/theming/
-
+ion-content,ion-title{
+text-decoration: aqua;
+color: brown;
+}
+#list{
+   color: black;
+     background-color: white; 
+}
 
 // App Global Sass
 // --------------------------------------------------
