@@ -84,7 +84,7 @@ export class DetailsPage {
     if(this.loginMethod==1){
       this.fireauth.auth.signOut()
       .then(succ=>{
-          console.log("logged out from my email");
+          //console.log("logged out from my email");
           this.navCtrl.setRoot(HomePage);
       })
       .catch(err=>{
@@ -115,10 +115,10 @@ export class DetailsPage {
     if(this.db.list('/userTransaction')){
       //alert("went inside");
             this.db.list('/userTransaction').subscribe(data=>{
-            console.log("1"+data);
+            //console.log("1"+data);
             
             this.usertransactionId=data[data.length-1].transactionId+1;
-            console.log("2"+"*****"+data[data.length-1].transactionId);
+            //console.log("2"+"*****"+data[data.length-1].transactionId);
     })
   }
   }
