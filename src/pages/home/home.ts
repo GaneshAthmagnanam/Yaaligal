@@ -16,6 +16,7 @@ export class HomePage {
   errorMsg:String='';
   errorMsg1:String='';
   fbUserData:any;
+  googleUserData:any;
   errorMsg2:String='';
   loginMethod:number;
   constructor(private fb: Facebook,public navCtrl: NavController, public googleplus:GooglePlus,private fireauth:AngularFireAuth) {
@@ -63,8 +64,11 @@ export class HomePage {
       firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
       .then(suc=>{
         this.loginMethod=2;
-        //firebase.auth().
-        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+        var uname=firebase.auth().currentUser.displayName;
+        var email=firebase.auth().currentUser.email;
+        var image=firebase.auth().currentUser.photoURL;
+        this.googleUserData={email:email,image:image,uName:uname};
+        this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,data:this.googleUserData});
       }).catch(ns=>{
         this.errorMsg1="";
         this.errorMsg1=ns['message'];

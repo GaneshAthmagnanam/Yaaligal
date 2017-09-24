@@ -59,9 +59,11 @@ export class DetailsPage {
     this.fbdataDetails=this.navParams.get('fbdataDetails');
     this.loginMethod=this.navParams.get('lMethod');
     this.index=this.navParams.get('itemValue');
+    //if(3==this.loginMethod){
     this.loggedinImage=this.navParams.get('image');
     this.loggedinEmail=this.navParams.get('email');
     this.loggedinName=this.navParams.get('name');
+    
     console.log("in details page"+this.loginMethod+"**"+this.index+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName)
     this.fetchTransactionId();
     this.show(this.index);
@@ -157,7 +159,7 @@ export class DetailsPage {
        if(1==this.loginMethod){
             this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.loggedinEmail});
        }
-       else if(3==this.loginMethod){
+       else if(3==this.loginMethod || 2==this.loginMethod){
             this.navCtrl.setRoot('FarmerDetailsPage',{data:this.fbdataDetails,method:this.loginMethod});
          
        }

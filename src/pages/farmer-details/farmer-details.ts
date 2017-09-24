@@ -47,18 +47,14 @@ export class FarmerDetailsPage {
       }
     })
   }
-  if(this.authMethod==3){
+  if(3==this.authMethod || 2==this.authMethod){
       this.fbData=this.navParams.get('data');
       this.loggedUserName=this.fbData.uName;
       this.loggedUserImage=this.fbData.image;
       this.mailIdentifier=this.fbData.email;
       //this.mailIdentifier=this.navParams.get('mailId');
       console.log("ethukkuuuhfjfhjdhdjghdjghdjghuuuuuuuuuuuu"+this.authMethod);
-      this.db.list('/userDetails').push({
-            username:this.loggedUserName,
-            email:this.mailIdentifier,
-            image:this.loggedUserImage
-      })
+     
     }
     this.db.list('/Farmerdetails').subscribe(data=>{
     this.Fdetails=data;
@@ -81,7 +77,7 @@ export class FarmerDetailsPage {
     if(1==this.authMethod){
       this.navCtrl.push('DetailsPage',{itemValue:value,lMethod:this.authMethod,name:this.loggedUserName,image:this.loggedUserImage,email:this.mailIdentifier});
     }
-    else if(3==this.authMethod){
+    else if(3==this.authMethod || 2==this.authMethod){
       this.navCtrl.push('DetailsPage',{fbdataDetails:this.fbData,itemValue:value,lMethod:this.authMethod,name:this.loggedUserName,image:this.loggedUserImage,email:this.mailIdentifier});
     }
   }

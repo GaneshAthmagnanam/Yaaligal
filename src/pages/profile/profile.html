@@ -17,7 +17,7 @@
 
 <div id="divId">
   <img id="imgId" src={{image}}/>
-  <button id="camera"  (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
+  <!--<button id="camera"  (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>-->
 </div>
 
 <table *ngIf="editName==false">
@@ -27,11 +27,12 @@
           {{name}}
       </div>
     </td>
-    <td>
+   <!-- <td>
       <div id="editName" (click)="actionToEditName()">Edit</div>
-    </td>
+    </td>-->
   </tr>
 </table>
+<!--
 <div *ngIf="editName==true">
     
     <ion-input type="text" placeholder="new name" [(ngModel)]="newName"></ion-input>
@@ -45,7 +46,7 @@
       <div id="revert" (click)="actionToRevertName()">Revert</div>
     </td>
   </tr>
-</table>
+</table>-->
 <div id="divEmail">
 {{emailId}}
 </div>
