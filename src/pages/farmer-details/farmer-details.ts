@@ -27,12 +27,12 @@ export class FarmerDetailsPage {
   loggedUserName:any;
   loggedUserImage:any;
   mailIdentifier:any;
+  fbData:any;
   constructor(public modalCtrl: ModalController,public popoverCtrl: PopoverController ,public googleplus:GooglePlus,private fb: Facebook,private fireauth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,public db: AngularFireDatabase) {
     this.authMethod=this.navParams.get('method');
     this.mailIdentifier=this.navParams.get('mailId');
-    //this.mailIdentifier=this.navParams.get('uEmail');
-    //this.loggedUserName=this.navParams.get('uName');
-    //this.uemailAddress=this.navParams.get('uEmail');
+    this.fbData=this.navParams.get('data');
+    alert(this.fbData.email);
     console.log("ethukkuuuuuuuuuuuuuuu"+this.authMethod+this.mailIdentifier);
     if(this.authMethod==1){
       console.log("ethukkuuuhfjfhjdhdjghdjghdjghuuuuuuuuuuuu"+this.authMethod);
@@ -66,7 +66,7 @@ export class FarmerDetailsPage {
  }
   farmerDetails(value){
 
-    this.navCtrl.setRoot('DetailsPage',{itemValue:value,lMethod:this.authMethod,name:this.loggedUserName,image:this.loggedUserImage,email:this.mailIdentifier});
+    this.navCtrl.push('DetailsPage',{itemValue:value,lMethod:this.authMethod,name:this.loggedUserName,image:this.loggedUserImage,email:this.mailIdentifier});
   }
   logout(){
     console.log("logout");

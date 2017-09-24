@@ -24,6 +24,7 @@ export class ProfilePage {
   imgSuccessMsg:String="";
   newName:any;
   key:any;
+  transKey:any;
   constructor(public camera: Camera,public db: AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams) {
       this.name=this.navParams.get('name');
       this.image=this.navParams.get('image');
@@ -64,6 +65,8 @@ export class ProfilePage {
         }
         }
       })
+      
+     
       this.editName=false;
 
   }
@@ -83,7 +86,7 @@ export class ProfilePage {
       }, (err) => {
  // Handle error
     alert("here1");
-    this.base64Image ='/assets/farmer.jpg';
+    this.base64Image ='/assets/noImage.png';
     this.actionToSavePic(this.base64Image);
     this.imgSuccessMsg="Failed to upload";
      // alert(err);
@@ -109,7 +112,7 @@ export class ProfilePage {
     this.db.list('/userDetails').subscribe(data=>{
       console.log("2222"+data.length);
       for(var i=0;i<data.length;i++){
-        if(this.newName==data[i].username && this.emailId==data[i].email){
+        if(this.emailId==data[i].email){
           this.name=data[i].username,
           this.image=data[i].image,
           this.emailId=data[i].email

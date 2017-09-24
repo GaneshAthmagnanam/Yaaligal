@@ -15,6 +15,7 @@ export class HomePage {
   password:any;
   errorMsg:String='';
   errorMsg1:String='';
+  fbUserData:any;
   errorMsg2:String='';
   loginMethod:number;
   constructor(private fb: Facebook,public navCtrl: NavController, public googleplus:GooglePlus,private fireauth:AngularFireAuth) {
@@ -28,6 +29,7 @@ export class HomePage {
         
         const result =await this.fireauth.auth.signInWithEmailAndPassword(this.email,this.password).then(succ=>{
         this.loginMethod=1;
+        //this.fireauth.auth.signInWithRedirect
         console.log(this.fireauth.auth.currentUser.displayName);
         this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.email});
       }).catch(error=>{
@@ -82,7 +84,12 @@ export class HomePage {
       this.fb.login(['public_profile', 'user_friends', 'email'])
         .then((res: FacebookLoginResponse) =>{ 
           this.loginMethod=3;
-          this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
+          this.fb.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)',[]).then(profile=>{
+          this.fbUserData={email:profile['email'],firstName:profile['first_name'],image:profile['picture_large']['data']['url'],uName:profile['name'],id:profile['id']}
+          alert(this.fbUserData);
+        })
+          //alert("  55555   "+res.authResponse.userID.toUpperCase);
+          this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,data:this.fbUserData});
         })
         .catch(e => {
           this.errorMsg2="";
