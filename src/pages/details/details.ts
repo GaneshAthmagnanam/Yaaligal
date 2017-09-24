@@ -37,6 +37,7 @@ export class DetailsPage {
   dateAlone:any;
   monthAlone:any;
   yearAlone:any;
+  fbdataDetails:any;
   minutesAlone:any;
   secondsAlone:any;
   milliSeconds:any;
@@ -54,6 +55,8 @@ export class DetailsPage {
     //console.log(new Date().getTime()+"***"+new Date().getTimezoneOffset()+"***"+new Date().getUTCDate());
     this.dateWithTimeStamp=this.dateAlone+"-"+this.monthAlone+"-"+this.yearAlone+" "+this.minutesAlone+":"+this.secondsAlone+":"+this.milliSeconds;
     console.log("My date is "+this.dateWithTimeStamp);
+    
+    this.fbdataDetails=this.navParams.get('fbdataDetails');
     this.loginMethod=this.navParams.get('lMethod');
     this.index=this.navParams.get('itemValue');
     this.loggedinImage=this.navParams.get('image');
@@ -149,9 +152,18 @@ export class DetailsPage {
         pendingmonths:this.pendingmonths,
         contributedcount:this.contributionCount,
         uid:this.farmerId
-        }).then(succ=>{
-          this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.loggedinEmail});
+      }).then(succ=>{
+       // alert("1"+this.loggedinEmail+this.loginMethod)
+       if(1==this.loginMethod){
+            this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.loggedinEmail});
+       }
+       else if(3==this.loginMethod){
+            this.navCtrl.setRoot('FarmerDetailsPage',{data:this.fbdataDetails,method:this.loginMethod});
+         
+       }
+          
         }).catch(error=>{
+          //alert("2"+error);
           this.errorMsg=error['message'];
           console.log("Transaction error"+error);  
         })

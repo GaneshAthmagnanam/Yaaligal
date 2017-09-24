@@ -63,6 +63,7 @@ export class HomePage {
       firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
       .then(suc=>{
         this.loginMethod=2;
+        //firebase.auth().
         this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod});
       }).catch(ns=>{
         this.errorMsg1="";
@@ -86,12 +87,13 @@ export class HomePage {
           this.loginMethod=3;
           this.fb.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)',[]).then(profile=>{
           this.fbUserData={email:profile['email'],firstName:profile['first_name'],image:profile['picture_large']['data']['url'],uName:profile['name'],id:profile['id']}
-          alert(this.fbUserData);
-        })
-          //alert("  55555   "+res.authResponse.userID.toUpperCase);
           this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,data:this.fbUserData});
+        }).catch(e=>{
+          this.errorMsg2="";
+          this.errorMsg2=e['message'];
+          console.log('Error logging into Facebook', e);
         })
-        .catch(e => {
+        }).catch(e => {
           this.errorMsg2="";
           this.errorMsg2=e['message'];
           console.log('Error logging into Facebook', e)
