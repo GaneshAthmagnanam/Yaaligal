@@ -23,6 +23,7 @@ export class OverallContributorsPage {
         //data.
         //this.contributorsDetails.
         this.contributorsDetails.push([data[i].userName, data[i].userImage])
+
         //this.contributorsDetails.push([data[i].date, data[i].userName, data[i].userImage, data[i].amountPaid])
       }
     })

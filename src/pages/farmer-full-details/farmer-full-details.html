@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="farmGreen">
     <ion-title>FarmerFullDetails</ion-title>
   </ion-navbar>
 
@@ -14,5 +14,18 @@
 
 
 <ion-content padding>
+  <ion-card *ngFor="let detail of farmersProfile; let i = index">
+  <img src="/assets/farmer.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{detail.name}} 
+      Age: {{detail.age}}
+      </ion-card-title>
+    <p>
+      Having 5 members in his family, suffering to pay loan amount of Rupees: {{detail.loanamount}}
+      
+    </p>
+  </ion-card-content>
+</ion-card>
 
 </ion-content>

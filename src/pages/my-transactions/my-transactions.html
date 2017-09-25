@@ -1,18 +1,47 @@
 <!--
-  Generated template for the MyTransactionsPage page.
+  Generated template for the OverallContributorsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>MyTransactions</ion-title>
+  <ion-navbar color="farmGreen">
+   <!--<ion-icon name="arrow-round-back" (click)="dismiss()"></ion-icon>-->
+    <ion-title>My Transactions</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<table>
+  <tr>
+    <th>TransactionId</th>
+    <th>Amount Paid</th>
+    <th>BeneficierId</th>
+  </tr>
+</table>
+<table *ngFor="let detail of transactionDeatils; let i = index">
+  <!--<tr *ngIf="i==0">
+    <th>TransactionId</th>
+    <th>Amount Paid</th>
+    <th>BeneficierId</th>
+  </tr>-->
+  <tr>
+   
+    <td style="width: 45%">
+      
+      {{detail[0]}}
+    </td>
+    <td style="text-align:left;">
+      {{detail[1]}}
+    </td>
+    <td style="text-align:right;">
+      {{detail[2]}}
+    </td>
+    
+  </tr>
+</table>  
 
 </ion-content>

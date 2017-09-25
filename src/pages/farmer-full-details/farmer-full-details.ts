@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'farmer-full-details.html',
 })
 export class FarmerFullDetailsPage {
-
+  farmersProfile:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.farmersProfile=this.navParams.get('details');
+    
   }
 
   ionViewDidLoad() {
