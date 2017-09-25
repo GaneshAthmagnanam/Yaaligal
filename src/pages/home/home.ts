@@ -32,6 +32,8 @@ export class HomePage {
         this.loginMethod=1;
         //this.fireauth.auth.signInWithRedirect
         console.log(this.fireauth.auth.currentUser.displayName);
+        //this.navCtrl.getRootNav().setRoot(HomePage); 
+        
         this.navCtrl.setRoot('FarmerDetailsPage',{method:this.loginMethod,mailId:this.email});
       }).catch(error=>{
         this.errorMsg="";
