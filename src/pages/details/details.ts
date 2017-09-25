@@ -141,11 +141,12 @@ export class DetailsPage {
  
   pay(){
     //console.log("before"+this.usersDetails);
-    this.transaction();
+    
     //this.usersDetails.
     //this.usersDetails.push(this.loggedinName,this.loggedinEmail,this.loggedinImage);
     //console.log("after"+this.usersDetails)
     if(this.uamount && this.uamount > 0){
+      this.transaction();
       this.newAmount=this.amount-this.uamount;
       this.contributionCount+=1;
       var res=this.db.list('/Farmerdetails/'+this.index);

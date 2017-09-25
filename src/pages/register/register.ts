@@ -35,7 +35,7 @@ export class RegisterPage {
   takePicture(){
     const options: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
+    destinationType: this.camera.DestinationType.DATA_URL,
     sourceType:this.camera.PictureSourceType.SAVEDPHOTOALBUM,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
@@ -43,8 +43,7 @@ export class RegisterPage {
     this.camera.getPicture(options).then((imageData) => {
  // imageData is either a base64 encoded string or a file URI
  // If it's base64:
-    this.base64Image = imageData;
-    alert(this.base64Image);
+    this.base64Image = 'data:image/jpeg;base64,' + imageData;
     this.imgSuccessMsg="Image Uploaded Successfully";
       }, (err) => {
  // Handle error
