@@ -2,6 +2,7 @@ page-farmer-details {
 ion-title{
     align-content: center;
     text-align: center;
+    
 }  
 
 ion-item{
@@ -9,6 +10,15 @@ border-top: 2px;
 border-left: 2px;
 border-right: 2px;
 border-bottom: 2px;
+}
+#uname{
+    margin-top: 15px;
+    margin-left: 5px;
+    font-size: 18px;
+}
+#uemail{
+    margin-top: 5px;
+    font-size: 12px;
 }
 #contributors{
     float:right;
@@ -22,12 +32,12 @@ border-bottom: 2px;
 }
 
 #image{
-    border-radius:50%;
+    border-radius:0%;
    // overflow:hidden; 
-    margin-left: 0px;
-    float: right;
-    width:50px;
-    height:50px;
+    margin-left: -10px;
+    float: left;
+    width:100px;
+    height:100px;
 }
 #welcomeMsg{
     text-align: center;

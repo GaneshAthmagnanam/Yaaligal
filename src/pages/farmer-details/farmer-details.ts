@@ -81,6 +81,15 @@ export class FarmerDetailsPage {
     let contibutorModal = this.modalCtrl.create('ContributorsPage', { user: this.mailIdentifier, method: this.authMethod, farmerIdentifier: this.Fdetails[index].uid });
     contibutorModal.present();
   }
+  getItems(value){
+    console.log("inside getItems 1");
+    for(var i=0;i<this.Fdetails.length;i++){
+      console.log("inside getItems 2"+this.Fdetails[i].name);
+      if((this.Fdetails[i].name).indexOf(value)){
+        console.log("showwww"+this.Fdetails[i].name);
+      }
+    }
+  }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

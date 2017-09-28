@@ -14,13 +14,21 @@ import firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import {ShareService} from '../pages/holder'
 
- var config = {
+ /*var config = {
     apiKey: "AIzaSyDcxLnjSsyd4uzKr64zrG3opZ6suFbYHhY",
     authDomain: "save-farmer.firebaseapp.com",
     databaseURL: "https://save-farmer.firebaseio.com",
     projectId: "save-farmer",
     storageBucket: "save-farmer.appspot.com",
     messagingSenderId: "776150611911"
+  };*/
+  var config = {
+    apiKey: "AIzaSyCSmHxesrQkapGZJxuml_22ElCEXQGhMlc",
+    authDomain: "sfbackup-99b1c.firebaseapp.com",
+    databaseURL: "https://sfbackup-99b1c.firebaseio.com",
+    projectId: "sfbackup-99b1c",
+    storageBucket: "sfbackup-99b1c.appspot.com",
+    messagingSenderId: "120166818413"
   };
 firebase.initializeApp(config);
 
