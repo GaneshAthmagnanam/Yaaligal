@@ -6,6 +6,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HomePage } from '../home/home';
 import { ShareService } from '../holder'
+import firebase from 'firebase';
 //import {DetailsPage} from '../details/details';
 /**
  * Generated class for the FarmerDetailsPage page.
@@ -25,17 +26,23 @@ export class FarmerDetailsPage {
   pages: Array<{ title: string, component: any }>;
   Fdetails: any = [];
   authMethod: number;
+  query:any;
   uname: any;
   uimage: any;
   uemailAddress: any;
   loggedUserName: any;
   loggedUserImage: any;
+  public countryList:Array<any>;
+  //public loadedCountryList:Array<any>;
+  public countryRef:firebase.database.Reference;
   mailIdentifier: any;
+  backupFdetails:any = [];
   fbData: any;
   private rootPage;
   constructor(menu: MenuController,private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
     this.authMethod = this.navParams.get('method');
     menu.enable(true);
+    this.countryRef = firebase.database().ref('/Farmerdetails');
     //this.nav.setRoot('FarmerDetailsPage');
     //this.navCtrl.getRootNav(nav).setRoot(HomePage); 
     this.pages = [
@@ -68,7 +75,6 @@ export class FarmerDetailsPage {
       this.loggedUserName = this.fbData.uName;
       this.loggedUserImage = this.fbData.image;
       this.mailIdentifier = this.fbData.email;
-      //this.mailIdentifier=this.navParams.get('mailId');
       console.log("ethukkuuuhfjfhjdhdjghdjghdjghuuuuuuuuuuuu" + this.authMethod);
 
     }
@@ -77,16 +83,75 @@ export class FarmerDetailsPage {
     this.shareService.setUserEmail(this.mailIdentifier)
     this.db.list('/Farmerdetails').subscribe(data => {
       this.Fdetails = data;
-
+      this.backupFdetails=data;
     })
+
+
+    this.countryRef.on('value', countryList => {
+    let countries = [];
+    countryList.forEach( country => {
+      countries.push(country.val());
+      return false;
+    });
+
+    this.countryList = countries;
+    this.Fdetails = countries;
+    });
+
+
   }
   showContributors(index) {
     let contibutorModal = this.modalCtrl.create('ContributorsPage', { user: this.mailIdentifier, method: this.authMethod, farmerIdentifier: this.Fdetails[index].uid });
     contibutorModal.present();
   }
-  getItems(value){
+  initializeItems(): void {
+  this.countryList = this.Fdetails;
+  }
+  getItems(searchbar) {
+  // Reset items back to all of the items
+  this.initializeItems();
+  this.countryList=this.backupFdetails;
+  
+  // set q to the value of the searchbar
+  var q = searchbar.srcElement.value;
+
+  console.log("value of"+"***"+q+"***");
+  // if the value is an empty string don't filter the items
+  console.log(this.Fdetails.length+"$$$$$$"+this.countryList.length+"@@@@@@"+this.backupFdetails.length)
+  if (!q) {
+    console.log("inside not of q")
+    this.Fdetails=this.backupFdetails;
+    return;
+  }
+  if(q.trim()){
+    if(q.val==""){
+      console.log("inside val")
+      this.Fdetails=this.backupFdetails;
+    }
+  }
+
+  this.countryList = this.countryList.filter((v) => {
+    if(v.name && q) {
+      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+  console.log(q, this.countryList.length);
+  if(this.countryList.length > 0){
+  this.Fdetails=this.countryList;
+  }
+  else{
+  this.Fdetails=[];
+  }
+}
+  getItemsx(value){
     console.log("inside getItems 1");
+    
     for(var i=0;i<this.Fdetails.length;i++){
+      
       console.log("inside getItems 2"+this.Fdetails[i].name);
       if((this.Fdetails[i].name).indexOf(value)){
         console.log("showwww"+this.Fdetails[i].name);
@@ -146,7 +211,10 @@ export class FarmerDetailsPage {
     });
   }
   farmerDetails(value) {
+    
+    console.log("clciked"+value);
     if (1 == this.authMethod) {
+      console.log("clciked inside"+value);
       this.navCtrl.push('DetailsPage', { itemValue: value, lMethod: this.authMethod, name: this.loggedUserName, image: this.loggedUserImage, email: this.mailIdentifier });
     }
     else if (3 == this.authMethod || 2 == this.authMethod) {

@@ -37,6 +37,7 @@ export class DetailsPage {
   dateAlone:any;
   monthAlone:any;
   yearAlone:any;
+  sfID:any
   fbdataDetails:any;
   minutesAlone:any;
   secondsAlone:any;
@@ -59,26 +60,32 @@ export class DetailsPage {
     
     this.fbdataDetails=this.navParams.get('fbdataDetails');
     this.loginMethod=this.navParams.get('lMethod');
-    this.index=this.navParams.get('itemValue');
+    this.sfID=this.navParams.get('itemValue');
     //if(3==this.loginMethod){
     this.loggedinImage=this.navParams.get('image');
     this.loggedinEmail=this.navParams.get('email');
     this.loggedinName=this.navParams.get('name');
     //alert("in details page"+this.loginMethod+"**"+this.index+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName);
-    console.log("in details page"+this.loginMethod+"**"+this.index+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName)
+    console.log("in details page"+this.loginMethod+"**"+this.sfID+"**"+this.loggedinImage+"**"+this.loggedinEmail+"**"+this.loggedinName)
     
-    this.show(this.index);
+    this.show(this.sfID);
   }
   
   show(value){
     this.db.list('/Farmerdetails').subscribe(data=>{
-    this.dataValue=data[value];
-    this.age=this.dataValue['age'];
-    this.amount=this.dataValue['loanamount'];
-    this.name=this.dataValue['name'];
-    this.pendingmonths=this.dataValue['pendingmonths'];
-    this.farmerId=this.dataValue['uid'];
-    this.contributionCount=this.dataValue['contributedcount'];
+    //this.dataValue=data[value];
+    for(var i=0;i<data.length;i++){
+      if(value==data[i].uid){
+        this.age=data[i].age;
+        this.amount=data[i].loanamount;
+        this.name=data[i].name;
+        this.pendingmonths=data[i].pendingmonths;
+        this.farmerId=data[i].uid;
+        this.contributionCount=data[i].contributedcount;
+        this.index=i;
+      }
+    
+    }
   }) 
   }
   logout(){

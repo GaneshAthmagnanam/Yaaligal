@@ -24,7 +24,7 @@ export class RegisterPage {
   imgSuccessMsg:String="";
   name:any="";
   errorMsg:any;
-  public base64Image: any='/assets/noImage.png';
+  public base64Image: any='assets/noImage.png';
   passwordMismatchMessage:String;
   
   constructor(public camera: Camera,public db:AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams, private fireauth:AngularFireAuth) {
