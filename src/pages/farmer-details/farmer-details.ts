@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, IonicPage, NavController, ModalController, PopoverController, NavParams } from 'ionic-angular';
+import { Nav, IonicPage, NavController, ModalController,MenuController , PopoverController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -33,8 +33,11 @@ export class FarmerDetailsPage {
   mailIdentifier: any;
   fbData: any;
   private rootPage;
-  constructor(private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
+  constructor(menu: MenuController,private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
     this.authMethod = this.navParams.get('method');
+    menu.enable(true);
+    //this.nav.setRoot('FarmerDetailsPage');
+    //this.navCtrl.getRootNav(nav).setRoot(HomePage); 
     this.pages = [
       { title: 'Home', component: 'FarmerDetailsPage' },
       { title: 'My Profile', component: 'ProfilePage' },
@@ -42,9 +45,9 @@ export class FarmerDetailsPage {
       { title: 'My Transactions', component: 'MyTransactionsPage' },
       { title: 'Benifitted Farmers', component: 'BenefittedFarmersPage' },
       { title: 'Contributors List', component: 'ContributorsPage' },
-      { title: 'Logout', component: 'LogoutPage' }
+      { title: 'Logout', component: HomePage }
     ];
-    //alert(this.fbData.email);
+    //alert(this.pages[2].title);
     console.log("ethukkuuuuuuuuuuuuuuu" + this.authMethod + this.mailIdentifier);
     if (this.authMethod == 1) {
       this.mailIdentifier = this.navParams.get('mailId');
@@ -95,7 +98,7 @@ export class FarmerDetailsPage {
     // we wouldn't want the back button to show in this scenario
     //console.log("enaaaaaaaaaa"+this.service.getUserName);
     this.nav.setRoot(page.component);
-    console.log(page.component);
+    //alert(page.component);
     //this.navCtrl.setRoot(page.component);
     if (page.component == 'ProfilePage') {
       this.profile();
@@ -114,6 +117,10 @@ export class FarmerDetailsPage {
     }
     else if (page.component == 'BenefittedFarmersPage') {
       //this.showContributors();
+    }
+    else if (page.component == HomePage) {
+      //alert("1111");
+      this.logout();
     }
 
   }
@@ -152,6 +159,7 @@ export class FarmerDetailsPage {
       this.fireauth.auth.signOut()
         .then(succ => {
           console.log("logged out from my email");
+          //this.nav.setRoot(page.component);
           this.navCtrl.setRoot(HomePage);
         })
         .catch(err => {

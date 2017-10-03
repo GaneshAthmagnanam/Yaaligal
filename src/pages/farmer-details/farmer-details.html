@@ -24,7 +24,7 @@
     
     <ion-list>
       <button  id="list" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-       
+
         {{p.title}}
       </button>
     </ion-list>
@@ -58,12 +58,12 @@
 <ion-content  padding>
  
  <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
-<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-searchbar  (ionInput)="getItems($event)"></ion-searchbar>
 <ion-list *ngFor="let detail of Fdetails; let i = index">
  <table>
    <tr>
       <td width="60%">
-        <ion-item (click)="farmerDetails(i)">
+        <ion-item (click)="farmerDetails(detail.uid)">
             <ion-avatar item-start>
                   <img src="assets/farmer.jpg">
             </ion-avatar>
