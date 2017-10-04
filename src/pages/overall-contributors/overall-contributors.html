@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="farmGreen">
-   <!--<ion-icon name="arrow-round-back" (click)="dismiss()"></ion-icon>-->
+    <!--<ion-icon name="arrow-round-back" (click)="dismiss()"></ion-icon>-->
     <ion-title>Overall Contributors</ion-title>
   </ion-navbar>
 
@@ -15,13 +15,13 @@
 
 
 <ion-content padding>
-<ion-list *ngFor="let detail of contributorsDetails; let i = index">
-  <ion-item>
-    <ion-avatar item-start>
-      <img src={{detail[1]}}>
-    </ion-avatar>
-    <h2>{{detail[0]}}</h2>
-    
-  </ion-item>
+  <ion-list *ngFor="let detail of contributorsDetails; let i = index">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src={{detail[1]}}>
+      </ion-avatar>
+      <h2>{{detail[0]}}</h2>
+
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -14,8 +14,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   templateUrl: 'overall-contributors.html',
 })
 export class OverallContributorsPage {
-  contributorsDetails=[];
-  filteredArray=[];
+  contributorsDetails = [];
+  filteredArray = [];
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     this.db.list('/userTransaction').subscribe(data => {
       for (var i = 0; i < data.length; i++) {
@@ -31,7 +31,7 @@ export class OverallContributorsPage {
     //const uniqueNames = Array.from(new Set(this.contributorsDetails));
     //console.log(uniqueNames);
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad OverallContributorsPage');
   }

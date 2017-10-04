@@ -15,14 +15,14 @@
 
 
 <ion-content padding>
-<ion-list *ngFor="let detail of transactionDetails; let i = index">
-  <ion-item>
-    <ion-avatar item-start>
-      <img src={{detail[2]}}>
-    </ion-avatar>
-    <h2>{{detail[1]}}</h2>
-    <p>Amount Paid: {{detail[3]}}</p>
-    <div id="date">Transaction Date: {{detail[0]}}</div>
-  </ion-item>
+  <ion-list *ngFor="let detail of transactionDetails; let i = index">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src={{detail[2]}}>
+      </ion-avatar>
+      <h2>{{detail[1]}}</h2>
+      <p>Amount Paid: {{detail[3]}}</p>
+      <div id="date">Transaction Date: {{detail[0]}}</div>
+    </ion-item>
   </ion-list>
 </ion-content>

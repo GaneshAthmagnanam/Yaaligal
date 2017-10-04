@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, IonicPage, NavController, ModalController,MenuController , PopoverController, NavParams } from 'ionic-angular';
+import { Nav, IonicPage, NavController, ModalController, MenuController, PopoverController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -25,21 +25,24 @@ export class FarmerDetailsPage {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{ title: string, component: any }>;
   Fdetails: any = [];
+  infiniteScrollFdetails: any = [];
   authMethod: number;
-  query:any;
+  query: any;
+  flag: boolean;
   uname: any;
   uimage: any;
   uemailAddress: any;
+  iVar: number
   loggedUserName: any;
   loggedUserImage: any;
-  public countryList:Array<any>;
+  public countryList: Array<any>;
   //public loadedCountryList:Array<any>;
-  public countryRef:firebase.database.Reference;
+  public countryRef: firebase.database.Reference;
   mailIdentifier: any;
-  backupFdetails:any = [];
+  backupFdetails: any = [];
   fbData: any;
   private rootPage;
-  constructor(menu: MenuController,private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
+  constructor(menu: MenuController, private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
     this.authMethod = this.navParams.get('method');
     menu.enable(true);
     this.countryRef = firebase.database().ref('/Farmerdetails');
@@ -82,20 +85,26 @@ export class FarmerDetailsPage {
     this.shareService.setUserImage(this.loggedUserImage)
     this.shareService.setUserEmail(this.mailIdentifier)
     this.db.list('/Farmerdetails').subscribe(data => {
+
       this.Fdetails = data;
-      this.backupFdetails=data;
+      this.backupFdetails = data;
+      for (this.iVar = 0; this.iVar < 8; this.iVar++) {
+        //this.items.push( this.items.length );
+        this.infiniteScrollFdetails.push(this.Fdetails[this.iVar]);
+        //this.backupFdetails.push(this.Fdetails[i]);
+      }
     })
 
 
     this.countryRef.on('value', countryList => {
-    let countries = [];
-    countryList.forEach( country => {
-      countries.push(country.val());
-      return false;
-    });
+      let countries = [];
+      countryList.forEach(country => {
+        countries.push(country.val());
+        return false;
+      });
 
-    this.countryList = countries;
-    this.Fdetails = countries;
+      this.countryList = countries;
+      this.Fdetails = countries;
     });
 
 
@@ -105,60 +114,79 @@ export class FarmerDetailsPage {
     contibutorModal.present();
   }
   initializeItems(): void {
-  this.countryList = this.Fdetails;
+    this.countryList = this.Fdetails;
   }
   getItems(searchbar) {
-  // Reset items back to all of the items
-  this.initializeItems();
-  this.countryList=this.backupFdetails;
-  
-  // set q to the value of the searchbar
-  var q = searchbar.srcElement.value;
+    this.flag = true;
+    // Reset items back to all of the items
+    this.initializeItems();
+    this.countryList = this.backupFdetails;
 
-  console.log("value of"+"***"+q+"***");
-  // if the value is an empty string don't filter the items
-  console.log(this.Fdetails.length+"$$$$$$"+this.countryList.length+"@@@@@@"+this.backupFdetails.length)
-  if (!q) {
-    console.log("inside not of q")
-    this.Fdetails=this.backupFdetails;
-    return;
-  }
-  if(q.trim()){
-    if(q.val==""){
-      console.log("inside val")
-      this.Fdetails=this.backupFdetails;
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+
+    console.log("value of" + "***" + q + "***");
+    // if the value is an empty string don't filter the items
+    console.log(this.Fdetails.length + "$$$$$$" + this.countryList.length + "@@@@@@" + this.backupFdetails.length)
+    if (!q) {
+      console.log("inside not of q")
+      this.flag = false;
+      this.infiniteScrollFdetails = this.backupFdetails;
+      return;
     }
-  }
-
-  this.countryList = this.countryList.filter((v) => {
-    if(v.name && q) {
-      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
-    }
-  });
-
-  console.log(q, this.countryList.length);
-  if(this.countryList.length > 0){
-  this.Fdetails=this.countryList;
-  }
-  else{
-  this.Fdetails=[];
-  }
-}
-  getItemsx(value){
-    console.log("inside getItems 1");
-    
-    for(var i=0;i<this.Fdetails.length;i++){
-      
-      console.log("inside getItems 2"+this.Fdetails[i].name);
-      if((this.Fdetails[i].name).indexOf(value)){
-        console.log("showwww"+this.Fdetails[i].name);
+    if (q.trim()) {
+      if (q.val == "") {
+        console.log("inside val")
+        this.flag = false;
+        this.infiniteScrollFdetails = this.backupFdetails;
       }
     }
+
+    this.countryList = this.countryList.filter((v) => {
+      if (v.name && q) {
+        if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+
+    console.log(q, this.countryList.length);
+    if (this.countryList.length > 0) {
+      this.infiniteScrollFdetails = this.countryList;
+    }
+    else {
+      this.infiniteScrollFdetails = [];
+    }
   }
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation' + this.countryList.length);
+
+    setTimeout(() => {
+      //var x=this.iVar+10;
+      for (this.iVar = this.iVar; this.iVar < this.Fdetails.length; this.iVar++) {
+        this.infiniteScrollFdetails.push(this.Fdetails[this.iVar]);
+      }
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+
+    /*if(this.flag==true){
+   setTimeout(() => {
+     //var x=this.iVar+10;
+     for (var i = 0; i < this.countryList.length; i++) {
+       this.infiniteScrollFdetails.push(this.countryList[i]);
+     }
+
+     console.log('Async operation has ended');
+     infiniteScroll.complete();
+   }, 500);
+ }*/
+  }
+
   openPage(page) {
+    //var obj=null;
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     //console.log("enaaaaaaaaaa"+this.service.getUserName);
@@ -170,18 +198,22 @@ export class FarmerDetailsPage {
     }
     else if (page.component == 'ContributorsPage') {
       //this.showContributors();
+      //this.getItems(obj);
       this.overallContribution();
     }
     else if (page.component == 'MyTransactionsPage') {
       //this.showContributors();
+      //this.getItems(obj);
       this.myTransaction();
     }
     else if (page.component == 'FarmerFullDetailsPage') {
       //this.showContributors();
+      //this.getItems(obj);
       this.FarmerFullDetailsPage();
     }
     else if (page.component == 'BenefittedFarmersPage') {
       //this.showContributors();
+      //this.getItems(obj);
     }
     else if (page.component == HomePage) {
       //alert("1111");
@@ -189,11 +221,11 @@ export class FarmerDetailsPage {
     }
 
   }
-  FarmerFullDetailsPage(){
-    this.navCtrl.push('FarmerFullDetailsPage',{details:this.Fdetails});
+  FarmerFullDetailsPage() {
+    this.navCtrl.push('FarmerFullDetailsPage', { details: this.Fdetails });
   }
   myTransaction() {
-    this.navCtrl.push('MyTransactionsPage', {email: this.mailIdentifier});
+    this.navCtrl.push('MyTransactionsPage', { email: this.mailIdentifier });
   }
   overallContribution() {
     this.navCtrl.push('OverallContributorsPage', {});
@@ -211,10 +243,10 @@ export class FarmerDetailsPage {
     });
   }
   farmerDetails(value) {
-    
-    console.log("clciked"+value);
+
+    console.log("clciked" + value);
     if (1 == this.authMethod) {
-      console.log("clciked inside"+value);
+      console.log("clciked inside" + value);
       this.navCtrl.push('DetailsPage', { itemValue: value, lMethod: this.authMethod, name: this.loggedUserName, image: this.loggedUserImage, email: this.mailIdentifier });
     }
     else if (3 == this.authMethod || 2 == this.authMethod) {

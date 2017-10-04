@@ -46,9 +46,10 @@ border-bottom: 2px;
     font-weight: bold;
 }
 #title{
-    text-align: center;
-    align-content: center;
-    margin-top: 12px;
+    //text-align: center;
+    //align-content: center;
+    //margin-top: 12px;
+    float:left;
 }
 #more{
     font-size: 30px;
@@ -56,5 +57,8 @@ border-bottom: 2px;
     float: right;
     margin-top: -2px;
     color: whitesmoke;
+}
+#sort{
+    float:right;
 }
 }

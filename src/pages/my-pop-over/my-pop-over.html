@@ -7,25 +7,29 @@
 
 
 <ion-content #popoverContent padding>
-<ion-icon id="close" (click)="dismiss()" name="close"></ion-icon>
-<table id="table" width="150" height="150" style="table-layout:fixed">
-  <tr>
-    <td>
-      
-        <img id="image" src={{image}} (click)="presentProfileModal($event)"/>
-      
-    </td>
-    <td>
-      
-      <div id="name">{{name}}</div>
-      <div id="email">{{email}}</div>
-    </td>
-  </tr>
-  <tr>
-    <th><div (click)="profile()"> My Profile</div></th>
-    <th><ion-icon name="log-out" (click)="logout()">Logout</ion-icon></th>
-  </tr>
-  <!--<tr>
+  <ion-icon id="close" (click)="dismiss()" name="close"></ion-icon>
+  <table id="table" width="150" height="150" style="table-layout:fixed">
+    <tr>
+      <td>
+
+        <img id="image" src={{image}} (click)="presentProfileModal($event)" />
+
+      </td>
+      <td>
+
+        <div id="name">{{name}}</div>
+        <div id="email">{{email}}</div>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <div (click)="profile()"> My Profile</div>
+      </th>
+      <th>
+        <ion-icon name="log-out" (click)="logout()">Logout</ion-icon>
+      </th>
+    </tr>
+    <!--<tr>
     <td>
       <button id="profile" ion-button icon-left block type="submit" (click)="profile()">
         <ion-icon name="log-out"></ion-icon>
@@ -39,5 +43,5 @@
       </button>
     </td>
   </tr>-->
-</table>
+  </table>
 </ion-content>

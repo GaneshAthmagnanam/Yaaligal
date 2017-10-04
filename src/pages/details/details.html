@@ -7,39 +7,37 @@
 <ion-header>
 
   <ion-navbar color="farmGreen">
-      <ion-title>
-        <ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>
-        About Mr.{{name}}
-      </ion-title>
+    <ion-title>
+      <ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>
+      About Mr.{{name}}
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding>
-<ion-card>
-  <ion-card-header>
-    <h5>{{name}}</h5>
-    <p>Age: {{age}}</p>
-  </ion-card-header>
-  <ion-card-content>
-    <h2 style="font-weight:bold;">Details:</h2>
-    <ul style="font-weight:bold;list-style-type:none;margin-top:5px;">
-      <li>Due Pending for past {{pendingmonths}}</li>
-      <li>Amount to be paid {{amount}}</li>
-      <li>Reason: Lack of Rain</li>
-    </ul>  
-    <br/>
-    Regards
-    <br/>
-    Save Farmer Team
-  </ion-card-content>
-</ion-card>
-<ion-label>Pending Loan Amount is Rs.{{amount}}</ion-label>
-<ion-item id="amountvalue">
-   <ion-label floating color="black">Enter Amount to contribute</ion-label>
-   <ion-input type="number" [(ngModel)]="uamount"></ion-input>
-</ion-item>
-<div id="errorMsg">{{errorMsg}}</div>
-<button id="pay" ion-button icon-left (click)="pay()" block >
+  <ion-card>
+    <ion-card-header>
+      <h5>{{name}}</h5>
+      <p>Age: {{age}}</p>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 style="font-weight:bold;">Details:</h2>
+      <ul style="font-weight:bold;list-style-type:none;margin-top:5px;">
+        <li>Due Pending for past {{pendingmonths}}</li>
+        <li>Amount to be paid {{amount}}</li>
+        <li>Reason: Lack of Rain</li>
+      </ul>
+      <br/> Regards
+      <br/> Save Farmer Team
+    </ion-card-content>
+  </ion-card>
+  <ion-label>Pending Loan Amount is Rs.{{amount}}</ion-label>
+  <ion-item id="amountvalue">
+    <ion-label floating color="black">Enter Amount to contribute</ion-label>
+    <ion-input type="number" [(ngModel)]="uamount"></ion-input>
+  </ion-item>
+  <div id="errorMsg">{{errorMsg}}</div>
+  <button id="pay" ion-button icon-left (click)="pay()" block>
     Pay to help {{name}}
   </button>
 </ion-content>

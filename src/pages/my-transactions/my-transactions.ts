@@ -15,10 +15,10 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class MyTransactionsPage {
   emailId: any;
-  transactionDeatils=[];
+  transactionDeatils = [];
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     this.emailId = this.navParams.get('email');
-   // alert("1"+this.emailId);
+    // alert("1"+this.emailId);
     this.db.list('/userTransaction').subscribe(data => {
       for (var i = 0; i < data.length; i++) {
         if (this.emailId == data[i].userEmail) {
