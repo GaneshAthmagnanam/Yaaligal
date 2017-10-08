@@ -11,16 +11,58 @@ border-left: 2px;
 border-right: 2px;
 border-bottom: 2px;
 }
+#myicon{
+    float:right;
+    margin-top: -13px;
+    margin-left: 20px;
+    color: orangered;
+    font-size: 12px;
+}
+
+#oneTH{
+color: #076307;
+align-content: center;
+//width:100%;
+text-align: center;
+background-color: whitesmoke;
+font-size: 20px;
+margin-left: 75px;
+}
+#myTR{
+    background-color:#076307;
+    //width: 100%;
+}
+
+#twoTH{
+    //float: left;
+    color: whitesmoke;
+    margin-left: 40px;
+}
 #uname{
     margin-top: 15px;
     margin-left: 5px;
     font-size: 18px;
 }
+
+
+#detail1{
+    font-size: 12px;
+}
+#detail2{
+    font-size: 12px;
+    
+}
+#detail3{
+    font-size: 12px;
+}
+
 #uemail{
     margin-top: 5px;
     font-size: 12px;
 }
 #contributors{
+    margin-left: 30px;
+    margin-bottom: -15px;
     float:right;
     font-weight:bolder;
     width: 20px;
@@ -52,11 +94,12 @@ border-bottom: 2px;
     float:left;
 }
 #more{
-    font-size: 30px;
-    background-color: blue;
-    float: right;
-    margin-top: -2px;
-    color: whitesmoke;
+    font-size: 20px;
+    //background-color: blue;
+    //float: right;
+    padding-right: 10px;
+    //margin-bottom: 0px;
+    color: gray;
 }
 #sort{
     float:right;

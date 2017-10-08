@@ -8,7 +8,7 @@
 
   <ion-navbar color="farmGreen">
     <ion-title>
-      <ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>
+      
       About Mr.{{name}}
     </ion-title>
   </ion-navbar>
@@ -23,8 +23,8 @@
     <ion-card-content>
       <h2 style="font-weight:bold;">Details:</h2>
       <ul style="font-weight:bold;list-style-type:none;margin-top:5px;">
-        <li>Due Pending for past {{pendingmonths}}</li>
-        <li>Amount to be paid {{amount}}</li>
+        <li>Due Pending for past {{pendingmonths}} months</li>
+        <li>Amount to be paid Rs.{{amount}}</li>
         <li>Reason: Lack of Rain</li>
       </ul>
       <br/> Regards

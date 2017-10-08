@@ -24,8 +24,33 @@
 
     <ion-list>
       <button id="list" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-
-        {{p.title}}
+        <span *ngIf="p.title=='Logout'">
+        <ion-icon id="more" name="log-out"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Home'">
+        <ion-icon id="more" name="home"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='My Profile'">
+        <ion-icon id="more" name="person"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Farmers Details'">
+        <ion-icon id="more" name="people"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='My Transactions'">
+        <ion-icon id="more" name="information-circle"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Benifitted Farmers'">
+        <ion-icon id="more" name="thumbs-up"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Contributors List'">
+        <ion-icon id="more" name="globe"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Contact Us'">
+        <ion-icon id="more" name="contacts"></ion-icon>{{p.title}}
+        </span>
+        <span *ngIf="p.title=='Rate SaveFarmer'">
+        <ion-icon id="more" name="star"></ion-icon>{{p.title}}
+        </span>
       </button>
     </ion-list>
   </ion-content>
@@ -59,29 +84,50 @@
 
   <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <table>
+    <tr>
+    <th >
+      <div id="oneTH">Farmers Details</div></th>
+   <!-- <th >
+      <div id="twoTH">Contributors Count</div></th>-->
+    </tr>
+  </table>
   <ion-list *ngFor="let detail of infiniteScrollFdetails; let i = index">
+   
     <table>
+
+      <ion-item >
       <tr>
-        <td width="60%">
-          <ion-item (click)="farmerDetails(detail.uid)">
+
+        
+        <td width="30%" (click)="farmerDetails(detail.uid)">
+          <!--<ion-item (click)="farmerDetails(detail.uid)">-->
             <ion-avatar item-start>
               <img src="assets/farmer.jpg">
-            </ion-avatar>
+            </ion-avatar></td>
+            <td width="50%" (click)="farmerDetails(detail.uid)">
             <div id="name">{{detail.name}}</div>
 
-            <div>Pending Months: {{detail.pendingmonths}}</div>
-
-            <div>Pending Loan: {{detail.loanamount}}</div>
-
-          </ion-item>
-        </td>
-        <td id="td">
+            <div id="detail1">Pending Months: {{detail.pendingmonths}}</div>
+            <div id="detail2">Contributors Counts:<ion-icon id="myicon" name="arrow-forward"></ion-icon></div>
+            
+            <div id="detail3">Pending Loan: Rs.{{detail.loanamount}}</div>
+            
+            
+          <!--</ion-item>-->
+            </td>
+        <td id="tdata" width="20px;">
+         
           <button id="contributors" ion-button icon-left block type="submit" (click)="showContributors(i)">
         {{detail.contributedcount}}  
         </button>
+          
         </td>
+        
       </tr>
+     </ion-item>
     </table>
+   
   </ion-list>
   <!--infinite scroll-->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

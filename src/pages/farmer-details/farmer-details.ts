@@ -55,6 +55,8 @@ export class FarmerDetailsPage {
       { title: 'My Transactions', component: 'MyTransactionsPage' },
       { title: 'Benifitted Farmers', component: 'BenefittedFarmersPage' },
       { title: 'Contributors List', component: 'ContributorsPage' },
+      { title: 'Contact Us', component: 'FarmerDetailsPage' },
+      { title: 'Rate SaveFarmer', component: 'FarmerDetailsPage' },
       { title: 'Logout', component: HomePage }
     ];
     //alert(this.pages[2].title);
