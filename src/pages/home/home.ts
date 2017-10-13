@@ -27,7 +27,13 @@ export class HomePage {
     this.errorMsg1 = "";
     this.errorMsg2 = "";
     try {
-
+     /** var res=this.fireauth.auth.getRedirectResult().then(s=>{
+        alert("valid "+res)
+      })
+      .catch(c=>{
+        alert("invalid");
+      })*/
+      firebase.auth
       const result = await this.fireauth.auth.signInWithEmailAndPassword(this.email, this.password).then(succ => {
         this.loginMethod = 1;
         //this.fireauth.auth.signInWithRedirect

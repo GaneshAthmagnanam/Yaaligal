@@ -26,6 +26,7 @@ export class ResetpasswordPage {
   resetPassword() {
     try {
       this.errorMsg = "";
+      //this.fireauth.auth.
       this.fireauth.auth.sendPasswordResetEmail(this.email).then(succ => {
 
         alert("Link for password Reset has been mailed");

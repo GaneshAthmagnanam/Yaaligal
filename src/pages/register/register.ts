@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HomePage } from '../home/home';
+import firebase from 'firebase';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -64,6 +65,15 @@ export class RegisterPage {
               image: this.base64Image
             })
             this.navCtrl.setRoot(HomePage);
+            
+            var user = firebase.auth().currentUser;
+            console.log(user.displayName);
+            user.sendEmailVerification().then(function() {
+            console.log("senttttt");
+            }).catch(function(error) {
+            // An error happened.
+            console.log("error ios"+error);
+              });
           }).catch(error => {
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
