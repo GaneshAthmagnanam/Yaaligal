@@ -22,6 +22,7 @@ export class RegisterPage {
   nameErrorMsg: String;
   password: any;
   cpassword: any;
+  successMsg:any;
   imgSuccessMsg: String = "";
   name: any = "";
   errorMsg: any;
@@ -69,6 +70,10 @@ export class RegisterPage {
             var user = firebase.auth().currentUser;
             console.log(user.displayName);
             user.sendEmailVerification().then(function() {
+            this.passwordMismatchMessage = "";
+            this.nameErrorMsg = "";
+            this.errorMsg = "";  
+            this.successMsg="Kindly check your email, Verification mail has been sent.";
             console.log("senttttt");
             }).catch(function(error) {
             // An error happened.

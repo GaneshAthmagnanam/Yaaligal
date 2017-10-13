@@ -27,20 +27,22 @@ export class HomePage {
     this.errorMsg1 = "";
     this.errorMsg2 = "";
     try {
-     /** var res=this.fireauth.auth.getRedirectResult().then(s=>{
-        alert("valid "+res)
-      })
-      .catch(c=>{
-        alert("invalid");
-      })*/
-      firebase.auth
+     //alert("1");
+     
+      
       const result = await this.fireauth.auth.signInWithEmailAndPassword(this.email, this.password).then(succ => {
+        var verify=this.fireauth.auth.currentUser.emailVerified;
+        //alert("boolean is"+verify);
         this.loginMethod = 1;
         //this.fireauth.auth.signInWithRedirect
         console.log(this.fireauth.auth.currentUser.displayName);
         //this.navCtrl.getRootNav().setRoot(HomePage); 
-
-        this.navCtrl.setRoot('FarmerDetailsPage', { method: this.loginMethod, mailId: this.email });
+        if(verify){
+        this.navCtrl.setRoot('FarmerDetailsPage', { method: this.loginMethod, mailId: this.email });}
+        else{
+        this.errorMsg = "";
+        this.errorMsg = "Your email address is not verified, kindly check ur email."
+        }
       }).catch(error => {
         this.errorMsg = "";
         this.errorMsg = error['message'];

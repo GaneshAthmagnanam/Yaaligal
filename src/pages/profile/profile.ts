@@ -31,7 +31,9 @@ export class ProfilePage {
     this.emailId = this.navParams.get('email');
     this.method = this.navParams.get('method');
   }
-
+  changePassword(){
+    this.navCtrl.push('ChangepasswordPage');
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
