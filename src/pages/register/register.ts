@@ -65,15 +65,17 @@ export class RegisterPage {
               email: this.email,
               image: this.base64Image
             })
-            this.navCtrl.setRoot(HomePage);
+            //this.navCtrl.setRoot(HomePage);
             
             var user = firebase.auth().currentUser;
+            //firebase.auth().
             console.log(user.displayName);
+            
             user.sendEmailVerification().then(function() {
-            this.passwordMismatchMessage = "";
-            this.nameErrorMsg = "";
-            this.errorMsg = "";  
-            this.successMsg="Kindly check your email, Verification mail has been sent.";
+            //this.passwordMismatchMessage = "";
+            //this.nameErrorMsg = "";
+            //this.errorMsg = "";  
+            //this.successMsg="Kindly check your email, Verification mail has been sent.";
             console.log("senttttt");
             }).catch(function(error) {
             // An error happened.
