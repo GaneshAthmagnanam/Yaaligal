@@ -40,6 +40,16 @@ export class HomePage {
         if(verify){
         this.navCtrl.setRoot('FarmerDetailsPage', { method: this.loginMethod, mailId: this.email });}
         else{
+          this.fireauth.auth.currentUser.sendEmailVerification().then(function() {
+            //this.passwordMismatchMessage = "";
+            //this.nameErrorMsg = "";
+            //this.errorMsg = "";  
+            //this.successMsg="Kindly check your email, Verification mail has been sent.";
+            console.log("Kindly check your email");
+            }).catch(function(error) {
+            // An error happened.
+            console.log("error ios"+error);
+              });  
         this.errorMsg = "";
         this.errorMsg = "Your email address is not verified, kindly check ur email."
         }

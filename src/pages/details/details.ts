@@ -57,7 +57,7 @@ export class DetailsPage {
     //console.log(new Date().getTime()+"***"+new Date().getTimezoneOffset()+"***"+new Date().getUTCDate());
     this.dateWithTimeStamp = this.dateAlone + "-" + this.monthAlone + "-" + this.yearAlone + " " + this.minutesAlone + ":" + this.secondsAlone + ":" + this.milliSeconds;
     console.log("My date is " + this.dateWithTimeStamp);
-
+    
     this.fbdataDetails = this.navParams.get('fbdataDetails');
     this.loginMethod = this.navParams.get('lMethod');
     this.sfID = this.navParams.get('itemValue');
