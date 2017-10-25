@@ -26,7 +26,7 @@ export class RegisterPage {
   imgSuccessMsg: String = "";
   name: any = "";
   errorMsg: any;
-  public base64Image: any = 'assets/noImage.png';
+  public base64Image: any = '/assets/noImage.png';
   passwordMismatchMessage: String;
 
   constructor(public camera: Camera, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private fireauth: AngularFireAuth) {
@@ -72,10 +72,11 @@ export class RegisterPage {
             console.log(user.displayName);
             
             user.sendEmailVerification().then(function() {
-            //this.passwordMismatchMessage = "";
-            //this.nameErrorMsg = "";
-            //this.errorMsg = "";  
-            //this.successMsg="Kindly check your email, Verification mail has been sent.";
+            this.passwordMismatchMessage = "";
+            this.nameErrorMsg = "";
+            this.errorMsg = "";  
+            this.successMsg="Kindly check your email, Verification mail has been sent.";
+
             console.log("senttttt");
             }).catch(function(error) {
             // An error happened.
