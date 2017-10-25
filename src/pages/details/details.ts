@@ -35,8 +35,10 @@ export class DetailsPage {
   usersDetails = [];
   dateWithTimeStamp: any;
   dateAlone: any;
+  currentDate:any;
   monthAlone: any;
   yearAlone: any;
+  hours:any;
   sfID: any
   fbdataDetails: any;
   minutesAlone: any;
@@ -48,14 +50,16 @@ export class DetailsPage {
   pendingmonths: any;
   constructor(public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
     //this.fetchTransactionId();
-    this.dateAlone = new Date().getDate();
-    this.monthAlone = new Date().getMonth();
-    this.yearAlone = new Date().getFullYear();
-    this.minutesAlone = new Date().getMinutes();
-    this.secondsAlone = new Date().getSeconds();
-    this.milliSeconds = new Date().getMilliseconds();
+    this.currentDate=new Date();
+    this.dateAlone = this.currentDate.getDate();
+    this.monthAlone = this.currentDate.getMonth()+1;
+    this.yearAlone = this.currentDate.getFullYear();
+    this.hours= this.currentDate.getHours();
+    this.minutesAlone = this.currentDate.getMinutes();
+    this.secondsAlone = this.currentDate.getSeconds();
+    //this.milliSeconds = this.currentDate.getMilliseconds();
     //console.log(new Date().getTime()+"***"+new Date().getTimezoneOffset()+"***"+new Date().getUTCDate());
-    this.dateWithTimeStamp = this.dateAlone + "-" + this.monthAlone + "-" + this.yearAlone + " " + this.minutesAlone + ":" + this.secondsAlone + ":" + this.milliSeconds;
+    this.dateWithTimeStamp = this.dateAlone + "-" + this.monthAlone + "-" + this.yearAlone + " " + this.hours + ":" + this.minutesAlone + ":" + this.secondsAlone;
     console.log("My date is " + this.dateWithTimeStamp);
     
     this.fbdataDetails = this.navParams.get('fbdataDetails');
