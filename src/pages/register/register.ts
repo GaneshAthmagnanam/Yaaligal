@@ -22,38 +22,19 @@ export class RegisterPage {
   nameErrorMsg: String;
   password: any;
   cpassword: any;
-  successMsg:any;
+  successMsg:String="";
   imgSuccessMsg: String = "";
   name: any = "";
-  errorMsg: any;
-  public base64Image: any = '/assets/noImage.png';
-  passwordMismatchMessage: String;
+  errorMsg: String="";
+  public base64Image: any = 'assets/noImage.png';
+  passwordMismatchMessage: String="";
 
   constructor(public camera: Camera, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private fireauth: AngularFireAuth) {
 
     console.log("username is " + this.name)
   }
 
-  takePicture() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.imgSuccessMsg = "Image Uploaded Successfully";
-    }, (err) => {
-      // Handle error
-      this.base64Image = '/assets/noImage.png';
-      this.imgSuccessMsg = "Failed to upload";
-      // alert(err);
-    });
-  }
+  
   async registerMe() {
     if (/^[a-zA-Z][a-zA-Z ]+$/.test(this.name) && this.name != "") {
       if (this.password == this.cpassword) {
@@ -66,22 +47,27 @@ export class RegisterPage {
               image: this.base64Image
             })
             //this.navCtrl.setRoot(HomePage);
-            
             var user = firebase.auth().currentUser;
-            //firebase.auth().
-            console.log(user.displayName);
             
+            try{
             user.sendEmailVerification().then(function() {
+            console.log("senttttt");
+                  })
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
-            this.errorMsg = "";  
+            this.errorMsg = "";
             this.successMsg="Kindly check your email, Verification mail has been sent.";
-
-            console.log("senttttt");
-            }).catch(function(error) {
-            // An error happened.
-            console.log("error ios"+error);
-              });
+            }
+            catch(error){
+            this.passwordMismatchMessage = "";
+            this.nameErrorMsg = "";
+            this.errorMsg = "Poor Network or contact admin.";
+            this.successMsg="";
+            console.log("error is"+error);
+            }
+          
+            
+              
           }).catch(error => {
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
