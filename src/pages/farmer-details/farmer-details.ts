@@ -51,6 +51,7 @@ export class FarmerDetailsPage {
     this.pages = [
       { title: 'Home', component: 'FarmerDetailsPage' },
       { title: 'My Profile', component: 'ProfilePage' },
+      { title: 'Contribute to Farmers Account', component: 'ContributeFarmersPage' },
       { title: 'Farmers Details', component: 'FarmerFullDetailsPage' },
       { title: 'My Transactions', component: 'MyTransactionsPage' },
       { title: 'Benifitted Farmers', component: 'BenefittedFarmersPage' },

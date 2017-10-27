@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the ResetpasswordPage page.
  *
@@ -17,7 +18,7 @@ import { HomePage } from '../home/home';
 export class ResetpasswordPage {
   email: any;
   errorMsg: String;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fireauth: AngularFireAuth) {
+  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams, private fireauth: AngularFireAuth) {
   }
 
   ionViewDidLoad() {
@@ -28,8 +29,8 @@ export class ResetpasswordPage {
       this.errorMsg = "";
       //this.fireauth.auth.
       this.fireauth.auth.sendPasswordResetEmail(this.email).then(succ => {
-
-        alert("Link for password Reset has been mailed");
+        this.presentToast();
+        //alert("");
         this.navCtrl.setRoot(HomePage);
       }).catch(error => {
         this.errorMsg = error['message'];
@@ -45,5 +46,18 @@ export class ResetpasswordPage {
     }
 
   }
+  presentToast() {
+  const toast = this.toastCtrl.create({
+    message: 'Link for password Reset has been mailed, kindly check your mail',
+    duration: 3500,
+    position: 'bottom'
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
+}
 
 }

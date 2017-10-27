@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -24,16 +26,35 @@ export class ProfilePage {
   imgSuccessMsg: String = "";
   newName: any;
   key: any;
+  errorMsg:any;
   transKey: any;
-  constructor(public camera: Camera, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public toastCtrl: ToastController,private fireauth: AngularFireAuth,public camera: Camera, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     this.name = this.navParams.get('name');
     this.image = this.navParams.get('image');
     this.emailId = this.navParams.get('email');
     this.method = this.navParams.get('method');
   }
   changePassword(){
-    this.navCtrl.push('ChangepasswordPage');
+    this.fireauth.auth.sendPasswordResetEmail(this.emailId).then(s=>{
+      this.presentToast();
+    }).catch(error=>{
+      this.errorMsg = error['message'];
+     // alert(error);
+    })
   }
+  presentToast() {
+  const toast = this.toastCtrl.create({
+    message: 'Link for password change has been mailed, kindly check your mail',
+    duration: 3500,
+    position: 'bottom'
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
+}
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
