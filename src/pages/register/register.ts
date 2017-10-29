@@ -56,7 +56,7 @@ export class RegisterPage {
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
             this.errorMsg = "";
-            this.successMsg="Kindly check your email, Verification mail has been sent.";
+            this.successMsg="Verify your email to proceed login, kindly check your email";
             }
             catch(error){
             this.passwordMismatchMessage = "";
