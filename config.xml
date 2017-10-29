@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.yaali.savefarmer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Our Farmer</name>
+    <name>Our Farmers</name>
     <description>An app to help  farmer in paying their debt.</description>
-    <author email="ganesh.athmagnanam@gmail.com" href="http://www.yaaligal.org/">Our Farmer Team</author>
+    <author email="ganesh.athmagnanam@gmail.com" href="http://www.yaaligal.org/">Our Farmers Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
