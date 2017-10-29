@@ -51,7 +51,7 @@ export class HomePage {
             console.log("error ios"+error);
               });  
         this.errorMsg = "";
-        this.errorMsg = "Your email address is not verified, kindly check ur email."
+        this.errorMsg = "Your email Id is not verfired, new mail has been sent for verification."
         }
       }).catch(error => {
         this.errorMsg = "";
