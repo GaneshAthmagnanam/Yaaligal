@@ -87,15 +87,15 @@
 <ion-content padding>
 
   <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <table>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Search farmer name" animated=true autocomplete="on"></ion-searchbar>
+  <!--<table>
     <tr>
     <th >
       <div id="oneTH">Farmers Details</div></th>
-   <!-- <th >
-      <div id="twoTH">Contributors Count</div></th>-->
+   <th >
+      <div id="twoTH">Contributors Count</div></th>
     </tr>
-  </table>
+  </table>-->
   <ion-list *ngFor="let detail of infiniteScrollFdetails; let i = index">
    
     <table>
@@ -112,10 +112,10 @@
             <td width="50%" (click)="farmerDetails(detail.uid)">
             <div id="name">{{detail.name}}</div>
 
-            <div id="detail1">Pending Months: {{detail.pendingmonths}}</div>
+            <!--<div id="detail1">Pending Months: {{detail.pendingmonths}}</div>
             <div id="detail2">Contributors Counts:<ion-icon id="myicon" name="arrow-forward"></ion-icon></div>
             
-            <div id="detail3">Pending Loan: Rs.{{detail.loanamount}}</div>
+            --><div id="detail3">Loan pending: Rs.{{detail.loanamount}}</div>
             
             
           <!--</ion-item>-->
