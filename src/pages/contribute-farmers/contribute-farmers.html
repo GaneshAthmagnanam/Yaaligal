@@ -6,13 +6,25 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>contributeFarmers</ion-title>
+  <ion-navbar color="farmGreen">
+    <ion-title>Bulk Money transactions</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<div id="content">  
+Dear <span id="emailId">{{mail}}</span>,
+<p>You can contribute money to the common farmers account, we will distribute to the farmers based on necessity</p>
+</div>
+<div id="amountInfo">Total Amount needed is Rs. 1000000</div>
+<!--
+<ion-item id="amountvalue">
+    <ion-label floating color="black">Enter Amount to contribute</ion-label>
+    <ion-input type="number" [(ngModel)]="uamount"></ion-input>
+  </ion-item>-->
+<button id="pay" ion-button icon-left (click)="pay()" block>
+    Pay to help {{name}}
+  </button>
 </ion-content>

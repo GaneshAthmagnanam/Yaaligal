@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the ContributeFarmersPage page.
+ * Generated class for the ContactmePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,18 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-contribute-farmers',
-  templateUrl: 'contribute-farmers.html',
+  selector: 'page-contactme',
+  templateUrl: 'contactme.html',
 })
-export class ContributeFarmersPage {
-  mail:any;
+export class ContactmePage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-    this.mail=this.navParams.get('email')
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContributeFarmersPage');
+    console.log('ionViewDidLoad ContactmePage');
   }
 
 }

@@ -54,9 +54,9 @@ export class FarmerDetailsPage {
       { title: 'Contribute to Farmers Account', component: 'ContributeFarmersPage' },
       { title: 'Farmers Details', component: 'FarmerFullDetailsPage' },
       { title: 'My Transactions', component: 'MyTransactionsPage' },
-      { title: 'Benifitted Farmers', component: 'BenefittedFarmersPage' },
+      { title: 'Benefited Farmers', component: 'BenefittedFarmersPage' },
       { title: 'Contributors List', component: 'ContributorsPage' },
-      { title: 'Contact Us', component: 'FarmerDetailsPage' },
+      { title: 'Contact Us', component: 'ContactmePage' },
       { title: 'Rate SaveFarmer', component: 'FarmerDetailsPage' },
       { title: 'Logout', component: HomePage }
     ];
@@ -204,6 +204,16 @@ export class FarmerDetailsPage {
       //this.getItems(obj);
       this.overallContribution();
     }
+    else if (page.component == 'ContributeFarmersPage') {
+      //this.showContributors();
+      //this.getItems(obj);
+      this.bulkTransaction();
+    }
+    else if (page.component == 'ContactmePage') {
+      //this.showContributors();
+      //this.getItems(obj);
+      this.contact();
+    }
     else if (page.component == 'MyTransactionsPage') {
       //this.showContributors();
       //this.getItems(obj);
@@ -227,8 +237,14 @@ export class FarmerDetailsPage {
   FarmerFullDetailsPage() {
     this.navCtrl.push('FarmerFullDetailsPage', { details: this.Fdetails });
   }
+  contact(){
+    this.navCtrl.push('ContactmePage');
+  }
   myTransaction() {
     this.navCtrl.push('MyTransactionsPage', { email: this.mailIdentifier });
+  }
+  bulkTransaction(){
+    this.navCtrl.push('ContributeFarmersPage', { email: this.mailIdentifier });
   }
   overallContribution() {
     this.navCtrl.push('OverallContributorsPage', {});
