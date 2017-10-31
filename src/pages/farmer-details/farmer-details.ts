@@ -119,6 +119,33 @@ export class FarmerDetailsPage {
   initializeItems(): void {
     this.countryList = this.Fdetails;
   }
+  fetchFarmers(){
+    this.db.list('/Farmerdetails').subscribe(data => {
+      this.infiniteScrollFdetails=data;
+      this.Fdetails = data;
+      console.log(this.Fdetails);
+      this.backupFdetails = data;
+      for (this.iVar = 0; this.iVar < 8; this.iVar++) {
+        //this.items.push( this.items.length );
+        this.infiniteScrollFdetails.push(this.Fdetails[this.iVar]);
+        //this.backupFdetails.push(this.Fdetails[i]);
+      }
+    })
+  }
+  doRefresh(refresher) {
+
+    this.fetchFarmers();
+
+
+   // FarmerDetailsPage obj= new FarmerDetailsPage();
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   getItems(searchbar) {
     this.flag = true;
     // Reset items back to all of the items

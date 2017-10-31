@@ -85,7 +85,9 @@
 
 
 <ion-content padding>
-
+<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
   <ion-searchbar (ionInput)="getItems($event)" placeholder="Search farmer name" animated=true autocomplete="on"></ion-searchbar>
   <!--<table>
