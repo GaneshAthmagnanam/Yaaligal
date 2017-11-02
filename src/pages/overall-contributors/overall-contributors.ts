@@ -27,9 +27,6 @@ export class OverallContributorsPage {
       for(var x=0;x<this.contributorsDetails.length;x++){
         for(var y=x+1;y<this.contributorsDetails.length;y++){
           if(this.contributorsDetails[x][2]==this.contributorsDetails[y][2]){
-            //this.contributorsDetails[x][0]=":";
-            //this.contributorsDetails[x][1]=":";
-            //this.contributorsDetails[x][2]=":";
             this.contributorsDetails.splice(x,2);
           }
         }
