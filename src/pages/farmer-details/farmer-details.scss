@@ -4,7 +4,17 @@ ion-title{
     text-align: center;
     
 }  
-
+#refresh{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 100; 
+    color:  #076307;
+}
+#noContent{
+    color:red;
+    text-align: center;
+    margin-top: 0px;
+}
 ion-item{
 border-top: 2px;
 border-left: 2px;

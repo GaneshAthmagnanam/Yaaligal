@@ -85,11 +85,13 @@
 
 
 <ion-content padding>
+  <div id="refresh">pull to refresh
+</div>
 <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <!-- <div id="welcomeMsg">Welcome {{loggedUserName}}  </div>-->
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="Search farmer name" animated=true autocomplete="on"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="getItems($event)" placeholder="Search farmer name" animated=true autocomplete="on"></ion-searchbar>
   <!--<table>
     <tr>
     <th >
@@ -135,10 +137,12 @@
     </table>
    
   </ion-list>
+  <div *ngIf="flag==true" id="noContent">{{noItems}}</div>
   <!--infinite scroll-->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
+  
 
 </ion-content>
 <!--<ion-nav [root]="rootPage"></ion-nav>-->

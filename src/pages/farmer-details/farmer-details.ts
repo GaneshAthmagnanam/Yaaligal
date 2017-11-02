@@ -25,14 +25,17 @@ export class FarmerDetailsPage {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{ title: string, component: any }>;
   Fdetails: any = [];
+  searchQuery:any;
   infiniteScrollFdetails: any = [];
   authMethod: number;
   query: any;
   flag: boolean;
   uname: any;
   uimage: any;
+  beforeScroll:any=[];
   uemailAddress: any;
-  iVar: number
+  iVar: number;
+  noItems:any;
   loggedUserName: any;
   loggedUserImage: any;
   public countryList: Array<any>;
@@ -44,6 +47,7 @@ export class FarmerDetailsPage {
   private rootPage;
   constructor(menu: MenuController, private shareService: ShareService, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public googleplus: GooglePlus, private fb: Facebook, private fireauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
     this.authMethod = this.navParams.get('method');
+    this.flag=false;
     menu.enable(true);
     this.countryRef = firebase.database().ref('/Farmerdetails');
     //this.nav.setRoot('FarmerDetailsPage');
@@ -94,8 +98,10 @@ export class FarmerDetailsPage {
       for (this.iVar = 0; this.iVar < 8; this.iVar++) {
         //this.items.push( this.items.length );
         this.infiniteScrollFdetails.push(this.Fdetails[this.iVar]);
+        
         //this.backupFdetails.push(this.Fdetails[i]);
       }
+      this.beforeScroll=this.infiniteScrollFdetails;
     })
 
 
@@ -121,32 +127,39 @@ export class FarmerDetailsPage {
   }
   fetchFarmers(){
     this.db.list('/Farmerdetails').subscribe(data => {
-      this.infiniteScrollFdetails=data;
+      this.infiniteScrollFdetails=[];
       this.Fdetails = data;
       console.log(this.Fdetails);
       this.backupFdetails = data;
       for (this.iVar = 0; this.iVar < 8; this.iVar++) {
         //this.items.push( this.items.length );
         this.infiniteScrollFdetails.push(this.Fdetails[this.iVar]);
+
         //this.backupFdetails.push(this.Fdetails[i]);
       }
     })
   }
   doRefresh(refresher) {
-
+    this.flag=false;
+    this.searchQuery="";
+    
+    //this.infiniteScrollFdetails =[];
+    //this.infiniteScrollFdetails = this.beforeScroll;
     this.fetchFarmers();
-
+    
 
    // FarmerDetailsPage obj= new FarmerDetailsPage();
     console.log('Begin async operation', refresher);
 
     setTimeout(() => {
       console.log('Async operation has ended');
+      console.log(this.infiniteScrollFdetails.length+"@@"+this.Fdetails.length+"@@"+this.backupFdetails.length+"@@"+this.flag)
       refresher.complete();
     }, 2000);
   }
 
   getItems(searchbar) {
+    console.log("serach bar is"+searchbar);
     this.flag = true;
     // Reset items back to all of the items
     this.initializeItems();
@@ -157,11 +170,12 @@ export class FarmerDetailsPage {
 
     console.log("value of" + "***" + q + "***");
     // if the value is an empty string don't filter the items
-    console.log(this.Fdetails.length + "$$$$$$" + this.countryList.length + "@@@@@@" + this.backupFdetails.length)
+    console.log(this.infiniteScrollFdetails.length+"@@@@@"+this.Fdetails.length + "$$$$$$" + this.countryList.length + "@@@@@@" + this.backupFdetails.length)
     if (!q) {
       console.log("inside not of q")
       this.flag = false;
-      this.infiniteScrollFdetails = this.backupFdetails;
+      this.infiniteScrollFdetails =[];
+      this.infiniteScrollFdetails = this.beforeScroll;
       return;
     }
     if (q.trim()) {
@@ -190,8 +204,11 @@ export class FarmerDetailsPage {
     }
   }
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation' + this.countryList.length);
-
+    console.log("ddd"+this.flag);
+    if(this.flag==false){
+    console.log('Begin async operation' + this.infiniteScrollFdetails.length);
+    //this.infiniteScrollFdetails=[];
+    try{
     setTimeout(() => {
       //var x=this.iVar+10;
       for (this.iVar = this.iVar; this.iVar < this.Fdetails.length; this.iVar++) {
@@ -201,18 +218,16 @@ export class FarmerDetailsPage {
       console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 500);
+  }
+  catch(e){
 
-    /*if(this.flag==true){
-   setTimeout(() => {
-     //var x=this.iVar+10;
-     for (var i = 0; i < this.countryList.length; i++) {
-       this.infiniteScrollFdetails.push(this.countryList[i]);
-     }
-
-     console.log('Async operation has ended');
-     infiniteScroll.complete();
-   }, 500);
- }*/
+      console.log('error is'+e);
+  }
+    }
+    else{
+      this.noItems="No more items";
+      infiniteScroll.complete();
+    }
   }
 
   openPage(page) {

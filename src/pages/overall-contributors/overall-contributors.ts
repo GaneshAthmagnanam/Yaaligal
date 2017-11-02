@@ -18,15 +18,37 @@ export class OverallContributorsPage {
   filteredArray = [];
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     this.db.list('/userTransaction').subscribe(data => {
+      // this.contributorsDetails.push([data[0].userName, data[0].userImage,data[0].userEmail])
       for (var i = 0; i < data.length; i++) {
-        //if(data[i].userEmail)
-        //data.
-        //this.contributorsDetails.
-        this.contributorsDetails.push([data[i].userName, data[i].userImage])
-
-        //this.contributorsDetails.push([data[i].date, data[i].userName, data[i].userImage, data[i].amountPaid])
+        
+        /*if(this.contributorsDetails.length==0){*/
+        this.contributorsDetails.push([data[i].userName, data[i].userImage,data[i].userEmail])
+     // }
+      /*else{
+        for(var j=0; j<this.contributorsDetails.length;j++){
+        if(data[i].userEmail != this.contributorsDetails[j][2]){
+          
+        this.contributorsDetails.push([data[i].userName, data[i].userImage,data[i].userEmail])
       }
+      
+        }
+      }*/
+      
+      }
+      
+      /*for (var i = 0; i < data.length; i++) {
+        for(var j=0; j<this.contributorsDetails.length;j++){
+        if(data[i].userEmail!=this.contributorsDetails[j][2]){
+          
+        this.filteredArray.push([data[j].userName, data[j].userImage,data[j].userEmail])
+      }
+      
+        }
+      }*/
+      
     })
+    console.log("@@@"+this.contributorsDetails.length);
+    //console.log("filtered"+this.filteredArray.length);
     //this.contributorsDetails.filter((item, index,) => index > 2 )
     //const uniqueNames = Array.from(new Set(this.contributorsDetails));
     //console.log(uniqueNames);
