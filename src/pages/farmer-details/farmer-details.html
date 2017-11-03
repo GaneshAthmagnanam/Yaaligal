@@ -8,9 +8,9 @@
   <ion-header>
     <ion-toolbar color="farmGreen">
       <ion-title>
-        
-        <!--<img id="image" src={{loggedUserImage}} />-->
-        <div id="iconItem">
+        <img *ngIf="authMethod=='3'" id="image" src={{loggedUserImage}} />
+        <img *ngIf="authMethod=='2'" id="image" src={{loggedUserImage}} />
+        <div id="iconItem" *ngIf="authMethod=='1'">
          <ion-icon name="person"></ion-icon></div>
         <div id="uname">
           {{loggedUserName}}
