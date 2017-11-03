@@ -16,13 +16,15 @@
 
 <ion-content padding>
   <ion-list *ngFor="let detail of contributorsDetails;  let i = index">
-    <ion-item>
-      <ion-avatar item-start>
+    <ion-item *ngIf="detail[1]!=':'">
+      <ion-avatar item-start *ngIf="detail[1]!=':'">
         <img src={{detail[1]}}>
       </ion-avatar>
-      
-      <h2>{{detail[0]}}</h2>
-      <h2>{{detail[2]}}</h2>
+      <div *ngIf="detail[0]!=':'">
+      <h2>{{detail[0]}}</h2></div>
+      <div *ngIf="detail[2]!=':'">
+       <h2>{{detail[2]}}</h2>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
