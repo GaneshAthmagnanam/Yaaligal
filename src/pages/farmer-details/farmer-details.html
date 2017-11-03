@@ -4,11 +4,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-menu [content]="content">
+<ion-menu [content]="content" type="overlay">
   <ion-header>
     <ion-toolbar color="farmGreen">
       <ion-title>
-        <img id="image" src={{loggedUserImage}} />
+        
+        <!--<img id="image" src={{loggedUserImage}} />-->
+        <div id="iconItem">
+         <ion-icon name="person"></ion-icon></div>
         <div id="uname">
           {{loggedUserName}}
 
@@ -70,7 +73,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
+    <!--<button ion-button menuToggle>
+      <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+    </button>-->
+    
     <ion-title>
       <!--<img id="image" src={{loggedUserImage}} (click)="presentProfileModal($event)" />-->
       <!--<ion-icon id="more" name="log-out" (click)="logout()"></ion-icon>-->

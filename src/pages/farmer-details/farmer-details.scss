@@ -1,3 +1,4 @@
+.md{
 page-farmer-details {
 ion-title{
     align-content: center;
@@ -10,6 +11,15 @@ ion-title{
     font-weight: 100; 
     color:  #076307;
 }
+
+    #iconItem{
+    float:left;
+    margin-top: 10px;
+    font-size: 40px;
+    color:orange;
+}
+    
+
 #noContent{
     color:red;
     text-align: center;
@@ -51,7 +61,7 @@ margin-left: 75px;
     margin-left: 40px;
 }
 #uname{
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 5px;
     font-size: 18px;
 }
@@ -123,4 +133,18 @@ margin-left: 75px;
 #sort{
     float:right;
 }
+}
+}
+.ios{
+    page-farmer-details {
+
+        #iconItem{
+    float:left;
+    margin-top: 10px;
+    margin-left: -10px;
+    font-size: 40px;
+    color:blue;
+}
+    
+    }
 }
