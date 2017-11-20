@@ -76,6 +76,7 @@ export class DetailsPage {
   }
 
   show(value) {
+    
     this.db.list('/Farmerdetails').subscribe(data => {
       //this.dataValue=data[value];
       for (var i = 0; i < data.length; i++) {

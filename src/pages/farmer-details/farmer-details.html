@@ -106,20 +106,20 @@
       <div id="twoTH">Contributors Count</div></th>
     </tr>
   </table>-->
-  <ion-list *ngFor="let detail of infiniteScrollFdetails; let i = index">
+  <ion-list >
    
     <table>
 
-      <ion-item >
+      <ion-item *ngFor="let detail of infiniteScrollFdetails; let i = index">
       <tr>
 
         
-        <td width="30%" (click)="farmerDetails(detail.uid)">
+        <td (click)="farmerDetails(detail.uid)">
           <!--<ion-item (click)="farmerDetails(detail.uid)">-->
             <ion-avatar item-start>
               <img src="assets/farmer.jpg">
             </ion-avatar></td>
-            <td width="50%" (click)="farmerDetails(detail.uid)">
+            <td (click)="farmerDetails(detail.uid)">
             <div id="name">{{detail.name}}</div>
 
             <!--<div id="detail1">Pending Months: {{detail.pendingmonths}}</div>
@@ -130,9 +130,9 @@
             
           <!--</ion-item>-->
             </td>
-        <td id="tdata" width="20px;">
+        <td id="tdata">
          
-          <button id="contributors" ion-button icon-left block type="submit" (click)="showContributors(i)">
+          <button id="contributors" ion-button icon-end block type="submit" (click)="showContributors(i)">
         {{detail.contributedcount}}  
         </button>
           

@@ -18,18 +18,24 @@ ion-title{
     font-size: 40px;
     //color:orange;
 }
-    
-
+/*    
+td{
+    width:13.3333%;
+}*/
 #noContent{
     color:red;
     text-align: center;
     margin-top: 0px;
 }
+
 ion-item{
 border-top: 2px;
 border-left: 2px;
 border-right: 2px;
 border-bottom: 2px;
+}
+table{
+    width:100%;
 }
 #myicon{
     float:right;
@@ -90,7 +96,7 @@ margin-left: 75px;
     font-size: 12px;
 }
 #contributors{
-    margin-left: 30px;
+    margin-left: 20px;
     margin-bottom: 0px;
     float:right;
     font-weight:bolder;
