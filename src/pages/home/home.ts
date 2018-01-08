@@ -52,11 +52,12 @@ export class HomePage {
               });  
         this.errorMsg = "";
         this.errorMsg = "Your email Id is not verfired, new mail has been sent for verification."
+        //alert(this.errorMsg);
         }
       }).catch(error => {
         this.errorMsg = "";
         this.errorMsg = error['message'];
-        console.log(error);
+        //alert(this.errorMsg);
       })
 
     }
@@ -64,7 +65,7 @@ export class HomePage {
       this.errorMsg = "";
       //console.log(error['message']);
       this.errorMsg = error['message'];
-      console.log(error);
+      //alert(this.errorMsg);
     }
 
 
@@ -93,11 +94,13 @@ export class HomePage {
         }).catch(ns => {
           this.errorMsg1 = "";
           this.errorMsg1 = ns['message'];
+          //alert(this.errorMsg1);
           console.log("Login Failed");
         })
     }, error => {
       this.errorMsg1 = "";
       this.errorMsg1 = error['message'];
+      //alert(this.errorMsg1);
       console.log("Login Failed in promise");
     })
   }
@@ -116,17 +119,20 @@ export class HomePage {
           }).catch(e => {
             this.errorMsg2 = "";
             this.errorMsg2 = e['message'];
+            //alert(this.errorMsg2);
             console.log('Error logging into Facebook', e);
           })
         }).catch(e => {
           this.errorMsg2 = "";
           this.errorMsg2 = e['message'];
+          //alert(this.errorMsg2);
           console.log('Error logging into Facebook', e)
         });
     }
     catch (error) {
       this.errorMsg2 = "";
       this.errorMsg2 = error['message'];
+      //alert(this.errorMsg2);
       console.log('Error logging into Facebook', error)
     }
   }

@@ -32,8 +32,29 @@ export class RegisterPage {
   constructor(public camera: Camera, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private fireauth: AngularFireAuth) {
 
     console.log("username is " + this.name)
-  }
+    
 
+    
+  }
+  takePicture(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: 1,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+     // let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.base64Image=imageData;
+     //let image=imageData;
+     //alert(this.base64Image);
+     }, (err) => {
+      // Handle error
+     });
+  }
+  
   
   async registerMe() {
     if (/^[a-zA-Z][a-zA-Z ]+$/.test(this.name) && this.name != "") {
@@ -57,13 +78,14 @@ export class RegisterPage {
             this.nameErrorMsg = "";
             this.errorMsg = "";
             this.successMsg="Verify your email to proceed login, kindly check your email";
+            alert(this.successMsg);
             }
             catch(error){
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
             this.errorMsg = "Poor Network or contact admin.";
             this.successMsg="";
-            console.log("error is"+error);
+            alert(error+","+this.errorMsg);
             }
           
             
@@ -72,6 +94,7 @@ export class RegisterPage {
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
             this.errorMsg = error['message'];
+            alert(this.errorMsg);
             console.log(error);
           })
 
@@ -80,6 +103,7 @@ export class RegisterPage {
           this.passwordMismatchMessage = "";
           this.nameErrorMsg = "";
           this.errorMsg = error['message'];
+          alert(this.errorMsg);
           console.log(error);
         }
       }
@@ -87,13 +111,15 @@ export class RegisterPage {
         this.errorMsg = "";
         this.nameErrorMsg = "";
         this.passwordMismatchMessage = "Password and Verify Password are not same";
-        console.log("error is" + this.passwordMismatchMessage)
+        alert(this.passwordMismatchMessage);
+        //console.log("error is" + this.passwordMismatchMessage)
       }
     }
     else {
       this.errorMsg = "";
       this.passwordMismatchMessage = "";
       this.nameErrorMsg = "Please enter a valid Username";
+      alert(this.nameErrorMsg);
     }
   }
 

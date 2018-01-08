@@ -75,6 +75,7 @@ export class FarmerDetailsPage {
           if (this.mailIdentifier == data[i].email) {
             this.loggedUserName = data[i].username;
             this.loggedUserImage = data[i].image;
+            //alert(this.loggedUserImage);
             console.log(this.loggedUserName + this.loggedUserImage + this.mailIdentifier);
           }
         }
@@ -117,6 +118,10 @@ export class FarmerDetailsPage {
     });
 
 
+  }
+  instantDonate(index){
+    let contibutorModal = this.modalCtrl.create('InstantpaymentPage', { user: this.mailIdentifier, method: this.authMethod, farmerIdentifier: this.Fdetails[index].uid });
+    contibutorModal.present();
   }
   showContributors(index) {
     let contibutorModal = this.modalCtrl.create('ContributorsPage', { user: this.mailIdentifier, method: this.authMethod, farmerIdentifier: this.Fdetails[index].uid });

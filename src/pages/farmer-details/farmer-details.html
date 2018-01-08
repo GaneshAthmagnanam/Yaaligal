@@ -12,6 +12,7 @@
         <img *ngIf="authMethod=='2'" id="image" src={{loggedUserImage}} />
         <div id="iconItem" *ngIf="authMethod=='1'">
          <ion-icon name="person"></ion-icon></div>
+        <!-- <img *ngIf="authMethod=='1'" id="image" src={{loggedUserImage}} />-->
         <div id="uname">
           {{loggedUserName}}
 
@@ -114,7 +115,7 @@
       <tr>
 
         
-        <td (click)="farmerDetails(detail.uid)">
+        <td (click)="farmerDetails(detail.uid)" item-width="20%">
           <!--<ion-item (click)="farmerDetails(detail.uid)">-->
             <ion-avatar item-start>
               <img src="assets/farmer.jpg">
@@ -137,7 +138,14 @@
         </button>
           
         </td>
-        
+       <!-- <td id="instantDonate">
+          
+           <button id="donate" type="submit" (click)="instantDonate(i)">
+            <img src="assets/donate.png">
+         </button>
+           
+         </td>
+        -->
       </tr>
      </ion-item>
     </table>
