@@ -73,12 +73,19 @@ export class RegisterPage {
             try{
             user.sendEmailVerification().then(function() {
             console.log("senttttt");
+                  }).catch(err=>{
+                    alert(err);
                   })
             this.passwordMismatchMessage = "";
             this.nameErrorMsg = "";
             this.errorMsg = "";
-            this.successMsg="Verify your email to proceed login, kindly check your email";
+            this.successMsg="!!SUCCESS!! \n \n Verify your email to proceed login, kindly check your email";
             alert(this.successMsg);
+            this.name="";
+            this.base64Image="";
+            this.email="";
+            this.password="";
+            this.cpassword="";
             }
             catch(error){
             this.passwordMismatchMessage = "";
@@ -102,7 +109,9 @@ export class RegisterPage {
         catch (error) {
           this.passwordMismatchMessage = "";
           this.nameErrorMsg = "";
+          
           this.errorMsg = error['message'];
+          this.errorMsg=this.errorMsg.substring(this.errorMsg.indexOf('"'));
           alert(this.errorMsg);
           console.log(error);
         }
